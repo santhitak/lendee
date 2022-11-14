@@ -1,10 +1,9 @@
-import { Image, Text } from "react-native-magnus";
-import { Button, Div } from "react-native-magnus";
+import { Image, Text, Button, Div } from "react-native-magnus";
 
 const LoginScreen = () => {
   return (
-    <Div w="full" h="20vh">
-      <Div w="full" h="full" flex={1} justifyContent="space-between">
+    <Div w="100vw" h="20vh">
+      <Div w="100%" h="100%" flex={1} justifyContent="space-between">
         <Div>
           <Text fontWeight="bold" textAlign="center" fontSize="6xl" mt="md">
             Sign in

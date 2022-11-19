@@ -13,7 +13,14 @@ import MyLendsScreen from "../screens/MyLendsScreen";
 import AllCategoriesScreen from "../screens/AllCategoriesScreen";
 
 //Categories Screen
-import TypeElectricScreen from "../screens/TypeElectricScreen";
+import TypeArtScreen from "../screens/categoriesScreen/TypeArtScreen";
+import TypeCookingScreen from "../screens/categoriesScreen/TypeCookingScreen";
+import TypeCostumeScreen from "../screens/categoriesScreen/TypeCostumeScreen";
+import TypeElectricScreen from "../screens/categoriesScreen/TypeElectricScreen";
+import TypeElectronicScreen from "../screens/categoriesScreen/TypeElectronicScreen";
+import TypeFurnitureScreen from "../screens/categoriesScreen/TypeFurnitureScreen";
+import TypeSportsScreen from "../screens/categoriesScreen/TypeSportsScreen";
+import TypeStationeryScreen from "../screens/categoriesScreen/TypeStationeryScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -92,37 +99,60 @@ function AllNavigationInHomeScreen() {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
         name="AllCategoriesInAllCategories"
-        component={AllCategoriesInAllCategoriesScreen}
+        component={StackInAllCategoriesScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
 }
 
-function AllCategoriesInAllCategoriesScreen() {
+function StackInAllCategoriesScreen() {
   return (
     <Stack.Navigator initialRouteName="AllCategories">
       <Stack.Screen name="AllCategories" component={AllCategoriesScreen} />
-      <Stack.Screen name="TypeElectric" component={TypeElectricScreen} />
+      <Stack.Screen
+        name="TypeArt"
+        component={TypeArtScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeCooking"
+        component={TypeCookingScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeElectric"
+        component={TypeElectricScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeElectronic"
+        component={TypeElectronicScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeFurniture"
+        component={TypeFurnitureScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeSports"
+        component={TypeSportsScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeStationery"
+        component={TypeStationeryScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeCostume"
+        component={TypeCostumeScreen}
+        options={{ headerLeft: () => null }}
+      />
     </Stack.Navigator>
   );
 }
-
-// function AllPages() {
-//   <Stack.Navigator
-//     initialRouteName="HomeAndFavoriteAndProfile"
-//     screenOptions={{
-//       headerStyle: { backgroundColor: "#4a148c" },
-//       headerTintColor: "white",
-//       headerShown: false,
-//     }}
-//   >
-//     <Stack.Screen
-//       name="HomeAndFavoriteAndProfile"
-//       component={HomeAndFavoriteAndProfile}
-//     />
-//   </Stack.Navigator>;
-// }
 
 export default function MyNavigation() {
   return (

@@ -1,15 +1,19 @@
 import React from "react";
 import { Text, Div } from "react-native-magnus";
 
-const Categories = ({ props }, { navigation }) => {
+type Props = { name: string; goto: string };
+const Categories = (
+  { name, goto }: Props,
+  { navigation }: { navigation: any }
+) => {
   return (
     <Div borderWidth={1}>
       <Text
         onPress={() => {
-          navigation.navigate(props.goto);
+          navigation.navigate(goto);
         }}
       >
-        {props.name}
+        {name}
       </Text>
     </Div>
   );

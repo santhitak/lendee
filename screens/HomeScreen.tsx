@@ -17,7 +17,7 @@ const HomeScreen = () => {
       <Div row>
         <Input
           placeholder="Search"
-          p={10}
+          p={10} w="90vw"
           focusBorderColor="blue700"
           bg="#EEE" color="gray700"
           borderColor="gray200"
@@ -34,9 +34,9 @@ const HomeScreen = () => {
 
       <Div row>
         <Input
-          mt="lg" ml="lg" py="lg" 
+          mt="lg" py="lg" 
           placeholder="สร้างโพสต์ใหม่"
-          p={10}
+          p={10} w="90vw"
           // focusBorderColor="blue700"
           bg="#EEE" color="gray700"
           fontWeight="bold"

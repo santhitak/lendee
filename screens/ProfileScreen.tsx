@@ -152,6 +152,7 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
                     borderColor={"#8E8E93"}
                     borderWidth={1}
                     color={"#8E8E93"}
+                    w={"40%"}
                   >
                     ยกเลิก
                   </Button>
@@ -159,6 +160,7 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
                     bg={"#1F4492"}
                     borderColor={"#1F4492"}
                     borderWidth={1}
+                    w={"40%"}
                     color={"white"}
                     onPress={() => {
                       setUser({

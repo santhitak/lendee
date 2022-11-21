@@ -1,27 +1,58 @@
-import React from "react";
-import { Text, Div, Button, Icon } from "react-native-magnus";
-
-const HomeScreen = ({ navigation }: { navigation: any }) => {
+import { SafeAreaView } from "react-native";
+import { Text, Button, Icon, Div, Input, Image } from "react-native-magnus";
+import HomeBottonCategories from "../components/HomeBottonCategories";
+import HomeProduct from "../components/HomeProduct";
+const HomeScreen = () => {
   return (
-    <Div>
-      <Text textAlign="center" fontSize="lg" mt="md">
-        HomeScreen
-      </Text>
-      <Button
-        mt="lg"
-        px="xl"
-        py="lg"
-        bg="green700"
-        color="white"
-        suffix={<Icon name="arrowright" ml="md" color="white" />}
-        onPress={() => {
-          navigation.navigate("AllCategoriesInAllCategories");
-        }}
-      >
-        ดูทั้งหมด
-      </Button>
-    </Div>
+    <SafeAreaView>
+      <Div w={"100vw"} h={"100vh"} bg={"white"}>
+        <Div p={20}>
+          <Div row>
+            <Input
+              placeholder="Search"
+              p={10}
+              w={"100%"}
+              focusBorderColor="blue700"
+              bg="#EEE"
+              color="gray700"
+              borderColor="gray200"
+              prefix={
+                <Icon name="search" color="gray500" fontFamily="Feather" />
+              }
+            />
+          </Div>
+          <Div row>
+            <HomeBottonCategories text="ทั้งหมด" />
+            <HomeBottonCategories text="1" />
+            <HomeBottonCategories text="2" />
+            <HomeBottonCategories text="ดูทั้งหมด" />
+          </Div>
+          <Div row>
+            <Input
+              placeholder="สร้างโพสต์ใหม่"
+              p={10}
+              my={10}
+              w="100%"
+              bg="#EEE"
+              color="gray700"
+              fontWeight="bold"
+              borderColor="gray200"
+              suffix={
+                <Icon name="edit" color="gray500" fontFamily="AntDesign" />
+              }
+            />
+          </Div>
+        </Div>
+        <Div row my={30} mx={15}>
+          <Text fontWeight="bold" fontSize="4xl">
+            ใหม่ล่าสุด
+          </Text>
+        </Div>
+        <Div>
+          <HomeProduct />
+        </Div>
+      </Div>
+    </SafeAreaView>
   );
 };
-
 export default HomeScreen;

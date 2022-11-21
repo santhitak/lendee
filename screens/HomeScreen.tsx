@@ -5,7 +5,7 @@ import HomeProduct from "../components/HomeProduct";
 const HomeScreen = () => {
   return (
     <SafeAreaView>
-      <Div w={"100vw"} h={"100vh"} bg={"white"}>
+      <Div w={"100vw"} minH={"100vh"} bg={"white"}>
         <Div p={20}>
           <Div row>
             <Input
@@ -22,10 +22,7 @@ const HomeScreen = () => {
             />
           </Div>
           <Div row>
-            <HomeBottonCategories categoriesName="ทั้งหมด" />
-            <HomeBottonCategories categoriesName="1" />
-            <HomeBottonCategories categoriesName="2" />
-            <HomeBottonCategories categoriesName="ดูทั้งหมด" />
+            <HomeBottonCategories />
           </Div>
           <Div row>
             <Input
@@ -43,7 +40,7 @@ const HomeScreen = () => {
             />
           </Div>
         </Div>
-        <Div row my={30} mx={15}>
+        <Div row my={10} mx={15}>
           <Text fontWeight="bold" fontSize="4xl">
             ใหม่ล่าสุด
           </Text>

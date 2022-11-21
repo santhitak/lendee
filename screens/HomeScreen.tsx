@@ -22,10 +22,10 @@ const HomeScreen = () => {
             />
           </Div>
           <Div row>
-            <HomeBottonCategories text="ทั้งหมด" />
-            <HomeBottonCategories text="1" />
-            <HomeBottonCategories text="2" />
-            <HomeBottonCategories text="ดูทั้งหมด" />
+            <HomeBottonCategories categoriesName="ทั้งหมด" />
+            <HomeBottonCategories categoriesName="1" />
+            <HomeBottonCategories categoriesName="2" />
+            <HomeBottonCategories categoriesName="ดูทั้งหมด" />
           </Div>
           <Div row>
             <Input

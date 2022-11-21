@@ -1,6 +1,6 @@
 import { SafeAreaView } from "react-native";
 import { Text, Button, Icon, Div, Input, Image } from "react-native-magnus";
-import HomeBottonCategories from "../components/HomeBottonCategories";
+import ButtonCategories from "../components/Home/ButtonCategories";
 import HomeProduct from "../components/HomeProduct";
 const HomeScreen = () => {
   return (
@@ -22,7 +22,7 @@ const HomeScreen = () => {
             />
           </Div>
           <Div row>
-            <HomeBottonCategories />
+            <ButtonCategories />
           </Div>
           <Div row>
             <Input

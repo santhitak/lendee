@@ -26,7 +26,9 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
         <Div w={"100vw"} h={"100vh"} bg={"white"}>
           <Div style={style.container} h={"100%"}>
             <Div row justifyContent="space-between" alignItems="baseline">
-              <Text fontSize={28}>บัญชีของฉัน</Text>
+              <Text fontSize={28} fontWeight={"bold"}>
+                บัญชีของฉัน
+              </Text>
               {!edit ? (
                 <Button
                   bg="transparent"
@@ -111,12 +113,24 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
               {!edit ? (
                 <>
                   <Div alignItems="baseline" py={20}>
-                    <Text fontSize={16} fontWeight={"600"}>
+                    <Text
+                      fontSize={16}
+                      fontWeight={"600"}
+                      onPress={() => {
+                        navigation.navigate("MyItems");
+                      }}
+                    >
                       My items
                     </Text>
                   </Div>
                   <Div alignItems="baseline" py={20}>
-                    <Text fontSize={16} fontWeight={"600"}>
+                    <Text
+                      fontSize={16}
+                      fontWeight={"600"}
+                      onPress={() => {
+                        navigation.navigate("MyLends");
+                      }}
+                    >
                       My Lends
                     </Text>
                   </Div>

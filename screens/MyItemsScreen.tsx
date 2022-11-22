@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import { Text, Div } from "react-native-magnus";
-import { BackHome } from "../components/BackHome";
+import { Text, Div, Button } from "react-native-magnus";
 import { Container } from "../components/Container";
 
 const data = [
@@ -68,7 +67,18 @@ const MyItemsScreen = ({ navigation }: any) => {
           <Text fontSize={28} fontWeight={"bold"}>
             ไม่มีสินค้าที่วางให้ยืม
           </Text>
-          <BackHome />
+          <Button
+            w={"100%"}
+            bg={"#FFB54D"}
+            color={"#212121"}
+            onPress={() => {
+              navigation.navigate("Home");
+            }}
+            position={"absolute"}
+            bottom={10}
+          >
+            กลับหน้าหลัก
+          </Button>
         </Div>
       )}
     </Container>

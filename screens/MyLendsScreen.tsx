@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Text, Div } from "react-native-magnus";
+import { BackHome } from "../components/BackHome";
 import { Container } from "../components/Container";
 
-const MyLendsScreen = () => {
+const MyLendsScreen = ({ navigation }: any) => {
   const [item, setItem] = useState(null);
   return (
     <Container>
@@ -60,6 +61,7 @@ const MyLendsScreen = () => {
           <Text fontSize={28} fontWeight={"bold"}>
             ไม่มีสินค้าที่วางให้ยืม
           </Text>
+          <BackHome />
         </Div>
       )}
     </Container>

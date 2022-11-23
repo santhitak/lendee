@@ -1,35 +1,11 @@
 import React, { useState } from "react";
-import { PressableStateCallbackType, SafeAreaView, FlatList } from "react-native";
-import { Text, Button, Icon, Div, Input, Image } from "react-native-magnus";
+import { SafeAreaView } from "react-native";
+import { Text, Button, Icon, Div } from "react-native-magnus";
 import HomeProduct from "../components/HomeProduct";
+import { ProductTypes, productMockData } from "../constants";
 
-type ProductTypes = {
-  productName: string;
-  productDetail: string;
-  productCost: number;
-  productUrl: string;
-  productImage: string;
-  favorite: boolean;
-  productCategories: Array<String>;
-};
-
-
-
-const data: ProductTypes[] = [
-  {
-    productName: "เก้าอี้",
-    productDetail: "เก้าอี้คุณภาพชั้นดี",
-    productCost: 20,
-    productUrl: "",
-    productImage:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-    favorite: false,
-    productCategories: ["เฟอร์นิเจอร์", "testดึงค่า"],
-  },
-];
-
-const ProductPage = () => {
-  const [product, setProduct] = useState<ProductTypes[]>(data);
+const ProductScreen = () => {
+  const [product, setProduct] = useState<ProductTypes[]>(productMockData);
   const [fav, setFav] = useState<boolean>(false);
 
   const setFavorite = (product: ProductTypes) => {
@@ -118,20 +94,24 @@ const ProductPage = () => {
                   </Text>
                 </Div>
                 <Div row>
-                <Button
-                  mt="xs"
-                  ml="lg"
-                  px="lg"
-                  py="lg"
-                  h={"5%"}
-                  bg="gray700"
-                  rounded="circle"
-                  color="white"
-                  fontSize={14}
-                  // shadow={2}
-                >
-                  {data[0].productCategories[0]}
-                </Button>
+                  {product.map((item: ProductTypes, i: number) => {
+                    return (
+                      <Button
+                        mt="xs"
+                        ml="lg"
+                        px="lg"
+                        py="lg"
+                        h={"5%"}
+                        bg="gray700"
+                        rounded="circle"
+                        color="white"
+                        fontSize={14}
+                        key={i}
+                      >
+                        {item.productCategories}
+                      </Button>
+                    );
+                  })}
                 </Div>
               </Div>
               <Div>
@@ -202,4 +182,4 @@ const ProductPage = () => {
     </SafeAreaView>
   );
 };
-export default ProductPage;
+export default ProductScreen;

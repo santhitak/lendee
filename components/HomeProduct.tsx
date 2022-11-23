@@ -1,35 +1,9 @@
 import { Text, Div } from "react-native-magnus";
 import React, { useState } from "react";
-
-type ProductTypes = {
-  productName: string;
-  productDetail: string;
-  productUrl: string;
-  productImage: string;
-  favorite: boolean;
-};
-
-const data: ProductTypes[] = [
-  {
-    productName: "เก้าอี้",
-    productDetail: "เก้าอี้คุณภาพชั้นดี",
-    productUrl: "",
-    productImage:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-    favorite: false,
-  },
-  {
-    productName: "โต๊ะไม้",
-    productDetail: "โต๊ะไม้คุณภาพชั้นดี",
-    productUrl: "",
-    productImage:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-    favorite: false,
-  },
-];
+import { ProductTypes, productMockData } from "../constants";
 
 const HomeProduct = () => {
-  const [product, setProduct] = useState<ProductTypes[]>(data);
+  const [product, setProduct] = useState<ProductTypes[]>(productMockData);
   const [fav, setFav] = useState<boolean>(false);
 
   const setFavorite = (product: ProductTypes) => {
@@ -38,10 +12,16 @@ const HomeProduct = () => {
 
   return (
     <>
-      <Div row my={20} w={"100%"} justifyContent="space-evenly">
+      <Div flex={1}>
         {product.map((item: ProductTypes, i: number) => {
           return (
-            <Div key={i}>
+            <Div
+              my={20}
+              w={"100%"}
+              px={20}
+              justifyContent="space-evenly"
+              key={i}
+            >
               <Div
                 rounded="xl"
                 h={150}
@@ -50,11 +30,16 @@ const HomeProduct = () => {
                 }}
               ></Div>
               <Div row alignItems="center">
-                <Div flex={1} w="40vw">
+                <Div flex={1}>
                   <Text fontWeight="bold" fontSize="xl" mt="sm">
                     {item.productName}
                   </Text>
-                  <Text color="gray500" fontSize="sm">
+                  <Text
+                    color="gray500"
+                    fontSize="sm"
+                    pr={10}
+                    ellipsizeMode={"tail"}
+                  >
                     {item.productDetail}
                   </Text>
                 </Div>

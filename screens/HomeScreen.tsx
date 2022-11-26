@@ -2,6 +2,7 @@ import { SafeAreaView, ScrollView } from "react-native";
 import { Text, Icon, Div, Input } from "react-native-magnus";
 import ButtonCategories from "../components/Home/ButtonCategories";
 import HomeProduct from "../components/HomeProduct";
+
 const HomeScreen = ({ navigation }: any) => {
   return (
     <ScrollView
@@ -46,7 +47,7 @@ const HomeScreen = ({ navigation }: any) => {
           </Div>
           <Div row my={10} mx={15}>
             <Text fontWeight="bold" fontSize="4xl">
-              ใหม่ล่าสุด55
+              ใหม่ล่าสุด
             </Text>
           </Div>
           <Div>

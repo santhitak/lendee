@@ -22,7 +22,7 @@ import TypeFurnitureScreen from "../screens/categoriesScreen/TypeFurnitureScreen
 import TypeSportsScreen from "../screens/categoriesScreen/TypeSportsScreen";
 import TypeStationeryScreen from "../screens/categoriesScreen/TypeStationeryScreen";
 
-import ProductDetail from "../screens/ProductDetail";
+import ProductScreen from "../screens/ProductScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -162,7 +162,7 @@ function AllNavigationInHomeScreen() {
         component={StackInAllCategoriesScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Stack.Screen name="ProductScreen" component={ProductScreen} />
       <Stack.Screen name="HomeProduct" component={HomeProduct} />
     </Stack.Navigator>
   );
@@ -171,7 +171,7 @@ function AllNavigationInHomeScreen() {
 function AllNavigationInHomeProductScreen() {
   return (
     <Stack.Navigator initialRouteName="HomeProduct">
-      <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Stack.Screen name="ProductScreen" component={ProductScreen} />
       <Stack.Screen name="HomeProduct" component={HomeProduct} />
     </Stack.Navigator>
   );
@@ -234,7 +234,7 @@ function ToProductPage() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Stack.Screen name="ProductScreen" component={ProductScreen} />
     </Stack.Navigator>
   );
 }

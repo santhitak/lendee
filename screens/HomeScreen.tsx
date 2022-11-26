@@ -1,11 +1,11 @@
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 import { Text, Button, Icon, Div, Input, Image } from "react-native-magnus";
 import ButtonCategories from "../components/Home/ButtonCategories";
 import HomeProduct from "../components/HomeProduct";
 const HomeScreen = () => {
   return (
     <SafeAreaView>
-      <Div w={"100vw"} minH={"100vh"} bg={"white"}>
+      <Div minW={"100vw"} minH={"100vh"} bg={"white"}>
         <Div p={20}>
           <Div row>
             <Input
@@ -21,9 +21,9 @@ const HomeScreen = () => {
               }
             />
           </Div>
-          <Div row>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <ButtonCategories />
-          </Div>
+          </ScrollView>
           <Div row>
             <Input
               placeholder="สร้างโพสต์ใหม่"

@@ -1,5 +1,6 @@
-import { Text, Button, Icon, Div } from "react-native-magnus";
+import { Button } from "react-native-magnus";
 import React, { useState } from "react";
+import { View } from "react-native";
 
 type categoriesList = {
   categoriesName: string;
@@ -33,35 +34,36 @@ const data: categoriesList[] = [
   {
     categoriesName: "เฟอร์นิเจอร์",
   },
+  {
+    categoriesName: "ดูประเภททั้งหมด →",
+  },
 ];
 
 const HomeBottonCategories = () => {
   const [categories, setProduct] = useState<categoriesList[]>(data);
 
   return (
-    <Div>
-      <Div row>
-        {categories.map(({ categoriesName }: categoriesList, i: number) => {
-          return (
-            <Div key={i}>
-              <Button
-                mt="lg"
-                mr={10}
-                px="xl"
-                py="lg"
-                h={40}
-                bg="#EEE"
-                color="#9E9E9E"
-                underlayColor="blue700"
-                fontWeight="bold"
-              >
-                {categoriesName}
-              </Button>
-            </Div>
-          );
-        })}
-      </Div>
-    </Div>
+    <>
+      {categories.map(({ categoriesName }: categoriesList, i: number) => {
+        return (
+          <View key={i}>
+            <Button
+              mt="lg"
+              mr={10}
+              px="xl"
+              py="lg"
+              h={40}
+              bg="#EEE"
+              color="#9E9E9E"
+              underlayColor="blue700"
+              fontWeight="bold"
+            >
+              {categoriesName}
+            </Button>
+          </View>
+        );
+      })}
+    </>
   );
 };
 

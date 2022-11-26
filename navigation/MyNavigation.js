@@ -10,6 +10,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import MyItemsScreen from "../screens/MyItemsScreen";
 import MyLendsScreen from "../screens/MyLendsScreen";
 import AllCategoriesScreen from "../screens/AllCategoriesScreen";
+import HomeProduct from "../components/HomeProduct";
 
 //Categories Screen
 import TypeArtScreen from "../screens/categoriesScreen/TypeArtScreen";
@@ -161,6 +162,17 @@ function AllNavigationInHomeScreen() {
         component={StackInAllCategoriesScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Stack.Screen name="HomeProduct" component={HomeProduct} />
+    </Stack.Navigator>
+  );
+}
+
+function AllNavigationInHomeProductScreen() {
+  return (
+    <Stack.Navigator initialRouteName="HomeProduct">
+      <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Stack.Screen name="HomeProduct" component={HomeProduct} />
     </Stack.Navigator>
   );
 }

@@ -1,9 +1,10 @@
 import { Text, Div, Button } from "react-native-magnus";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ProductTypes, productMockData } from "../constants";
 import { TouchableOpacity } from "react-native";
+import ProductDetail from "../screens/ProductDetail";
 
-const HomeProduct = ({ navigation }: any) => {
+const HomeProduct = ({ navigation, props }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>(productMockData);
   const [fav, setFav] = useState<boolean>(false);
 
@@ -12,8 +13,15 @@ const HomeProduct = ({ navigation }: any) => {
   };
 
   const navigateToProductPage = (item: ProductTypes) => {
-    navigation.navigate("ProductDetail");
+    navigation.navigate("ProductDetail", { product: item });
+    // ส่งค่า ProductTypes กับ number ไปให้ ProductDetail
   };
+  // useEffect(() => {
+  //   console.log(
+  //     "🚀 ~ file: ProductDetail.tsx ~ line 35 ~ ProductDetail ~ route.params.product",
+  //     product[0]
+  //   );
+  // });
 
   return (
     <>
@@ -27,7 +35,12 @@ const HomeProduct = ({ navigation }: any) => {
               justifyContent="space-evenly"
               key={i}
             >
-              <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => {
+                  navigateToProductPage(item);
+                }}
+              >
                 <Div
                   rounded="xl"
                   h={150}

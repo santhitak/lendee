@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model USER {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  email     String    @unique
+  name      String?
+  phone     String
+  products  PRODUCT[]
+}
+
+model PRODUCT {
+  id                Int          @id @default(autoincrement())
+  createdAt         DateTime     @default(now())
+  author            USER?        @relation(fields: [authorId], references: [id])
+  authorId          Int
+  productName       String
+  productDetail     String
+  productCost       Int
+  productUrl        String
+  productImage      String
+  favorite          Boolean
+}

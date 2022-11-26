@@ -21,6 +21,8 @@ import TypeFurnitureScreen from "../screens/categoriesScreen/TypeFurnitureScreen
 import TypeSportsScreen from "../screens/categoriesScreen/TypeSportsScreen";
 import TypeStationeryScreen from "../screens/categoriesScreen/TypeStationeryScreen";
 
+import ProductDetail from "../screens/ProductDetail";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -39,6 +41,7 @@ function assign() {
     </Stack.Navigator>
   );
 }
+
 function HomeAndFavoriteAndProfile() {
   return (
     <Tab.Navigator initialRouteName="Profile">
@@ -206,6 +209,20 @@ function StackInAllCategoriesScreen() {
         component={TypeCostumeScreen}
         options={{ headerLeft: () => null }}
       />
+    </Stack.Navigator>
+  );
+}
+
+function ToProductPage() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#4a148c" },
+        headerTintColor: "white",
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="ProductDetail" component={ProductDetail} />
     </Stack.Navigator>
   );
 }

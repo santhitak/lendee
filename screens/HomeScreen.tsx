@@ -4,7 +4,10 @@ import ButtonCategories from "../components/Home/ButtonCategories";
 import HomeProduct from "../components/HomeProduct";
 const HomeScreen = () => {
   return (
-    <ScrollView>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+    >
       <SafeAreaView>
         <Div w={"100vw"} minH={"100vh"} bg={"white"}>
           <Div p={20}>

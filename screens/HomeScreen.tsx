@@ -1,13 +1,5 @@
 import { SafeAreaView, ScrollView } from "react-native";
-import {
-  Text,
-  Button,
-  Icon,
-  Div,
-  Input,
-  Image,
-  ScrollDiv,
-} from "react-native-magnus";
+import { Text, Icon, Div, Input } from "react-native-magnus";
 import ButtonCategories from "../components/Home/ButtonCategories";
 import HomeProduct from "../components/HomeProduct";
 const HomeScreen = () => {
@@ -30,9 +22,9 @@ const HomeScreen = () => {
                 }
               />
             </Div>
-            <Div row>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <ButtonCategories />
-            </Div>
+            </ScrollView>
             <Div row>
               <Input
                 placeholder="สร้างโพสต์ใหม่"

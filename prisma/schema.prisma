@@ -8,19 +8,19 @@ datasource db {
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
-model USER {
+model User {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   email     String    @unique
   name      String?
   phone     String
-  products  PRODUCT[]
+  products  Product[]
 }
 
-model PRODUCT {
+model Product {
   id                Int          @id @default(autoincrement())
   createdAt         DateTime     @default(now())
-  author            USER?        @relation(fields: [authorId], references: [id])
+  author            User?        @relation(fields: [authorId], references: [id])
   authorId          Int
   productName       String
   productDetail     String
@@ -28,4 +28,19 @@ model PRODUCT {
   productUrl        String
   productImage      String
   favorite          Boolean
+  categories        Categories
+}
+
+enum Categories {
+  Kitchen
+  Furniture
+  Electronic
+  Fashion
+  Household
+  Tool
+  Game
+  Sport
+  Jewelry
+  Art
+  Pet
 }

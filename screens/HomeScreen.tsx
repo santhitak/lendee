@@ -1,7 +1,10 @@
+import { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { Text, Icon, Div, Input } from "react-native-magnus";
 import ButtonCategories from "../components/Home/ButtonCategories";
 import HomeProduct from "../components/HomeProduct";
+import { ProductTypes } from "../constants";
+
 const HomeScreen = () => {
   return (
     <ScrollView

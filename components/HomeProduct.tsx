@@ -5,7 +5,19 @@ import { SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import ProductScreen from "../screens/ProductScreen";
 
 const HomeProduct = ({ navigation, props }: any) => {
-  const [product, setProduct] = useState<ProductTypes[]>(productMockData);
+  const [product, setProduct] = useState<ProductTypes[]>([]);
+
+  useState(() => {
+    fetch("http://localhost:3000/products")
+      .then((response) => response.json())
+      .then((json) => {
+        setProduct(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
   const [fav, setFav] = useState<boolean>(false);
 
   const setFavorite = (product: ProductTypes) => {

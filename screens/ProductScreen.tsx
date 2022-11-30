@@ -13,7 +13,7 @@ const ProductScreen = ({ navigation, route }: any) => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView>
         {product.map((item: ProductTypes, i: number) => {
           return (
@@ -26,7 +26,7 @@ const ProductScreen = ({ navigation, route }: any) => {
               key={i}
             >
               <Div>
-                <Div h={"20%"}>
+                <Div h={"30vh"}>
                   <Image
                     h={"100%"}
                     w={"100%"}

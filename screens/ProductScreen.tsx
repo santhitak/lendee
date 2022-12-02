@@ -5,14 +5,22 @@ import { Container } from "../components/Container";
 import HomeProduct from "../components/HomeProduct";
 import { ProductTypes } from "../constants";
 
-const ProductScreen = ({ route }: any) => {
+const ProductScreen = ({ route, navigation }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>(route.params.product);
   const [fav, setFav] = useState<boolean>(false);
 
   const setFavorite = (product: ProductTypes) => {
     product.favorite = fav;
   };
-
+  const navigateToReviewScreen = () => {
+    navigation.navigate("ReviewScreen");
+  };
+  const navigateToCommentScreen = () => {
+    navigation.navigate("CommentScreen");
+  };
+  const navigateToProductInfoScreen = () => {
+    navigation.navigate("ProductInfoScreen");
+  };
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView>
@@ -139,6 +147,7 @@ const ProductScreen = ({ route }: any) => {
                       p={12}
                       color="black"
                       justifyContent="flex-start"
+                      onPress={() => navigateToProductInfoScreen()}
                     >
                       Product information
                     </Button>
@@ -148,6 +157,7 @@ const ProductScreen = ({ route }: any) => {
                       p={12}
                       color="black"
                       justifyContent="flex-start"
+                      onPress={() => navigateToReviewScreen()}
                     >
                       Reviews
                     </Button>
@@ -157,6 +167,7 @@ const ProductScreen = ({ route }: any) => {
                       p={12}
                       color="black"
                       justifyContent="flex-start"
+                      onPress={() => navigateToCommentScreen()}
                     >
                       Comments
                     </Button>
@@ -167,7 +178,7 @@ const ProductScreen = ({ route }: any) => {
                     </Text>
                   </Div>
                   <Div row>
-                    <HomeProduct />
+                    <HomeProduct navigation={navigation} />
                   </Div>
                 </Container>
               </Div>

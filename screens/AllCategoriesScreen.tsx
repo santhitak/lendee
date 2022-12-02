@@ -1,13 +1,6 @@
 import React from "react";
-import { NavigationAction } from "@react-navigation/native";
-import { Text, Div, Button } from "react-native-magnus";
-import Categories from "../components/Categories";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-// type AllCategoriesScreenProps = NativeStackScreenProps<RootStackParamList, "AllCategories">;
-const AllCategoriesScreen = (
-  // { props }: { props: any },
-  { navigation }: any
-) => {
+import { Text, Div } from "react-native-magnus";
+const AllCategoriesScreen = ({ navigation }: any) => {
   return (
     <Div borderColor="black">
       <Text textAlign="center" fontSize="lg" mt="md">

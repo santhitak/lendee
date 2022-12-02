@@ -14,7 +14,7 @@ const data: User = {
   phone: "0896598877",
 };
 
-const ProfileScreen = ({ navigation }: { navigation: any }) => {
+const ProfileScreen = ({ navigation }: any) => {
   const [user, setUser] = useState<User>(data);
   const [edit, setEdit] = useState(false);
   const [newName, setNewName] = useState<string>(user.name);

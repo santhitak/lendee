@@ -8,6 +8,12 @@ export type ProductTypes = {
   productCategories: string[];
 };
 
+export type CommentTypes = {
+  name: string;
+  detail: string;
+  createdAt: string;
+};
+
 export const productMockData: ProductTypes[] = [
   {
     productName: "Docksta table",

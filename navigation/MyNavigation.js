@@ -10,6 +10,10 @@ import ProfileScreen from "../screens/ProfileScreen";
 import MyItemsScreen from "../screens/MyItemsScreen";
 import MyLendsScreen from "../screens/MyLendsScreen";
 import AllCategoriesScreen from "../screens/AllCategoriesScreen";
+import HomeProduct from "../components/HomeProduct";
+import ReviewScreen from "../screens/ReviewScreen";
+import CommentScreen from "../screens/CommentScreen";
+import ProductInfoScreen from "../screens/ProductInfoScreen";
 
 //Categories Screen
 import TypeArtScreen from "../screens/categoriesScreen/TypeArtScreen";
@@ -21,7 +25,7 @@ import TypeFurnitureScreen from "../screens/categoriesScreen/TypeFurnitureScreen
 import TypeSportsScreen from "../screens/categoriesScreen/TypeSportsScreen";
 import TypeStationeryScreen from "../screens/categoriesScreen/TypeStationeryScreen";
 
-import ProductDetail from "../screens/ProductDetail";
+import ProductScreen from "../screens/ProductScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -161,6 +165,29 @@ function AllNavigationInHomeScreen() {
         component={StackInAllCategoriesScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="HomeProduct" component={HomeProduct} />
+      <Stack.Screen name="ProductScreen" component={ProductScreen} />
+
+      {/* Nav In ProductScreen */}
+      <Stack.Screen name="ReviewScreen" component={ReviewScreen} />
+      <Stack.Screen name="CommentScreen" component={CommentScreen} />
+      <Stack.Screen name="ProductInfoScreen" component={ProductInfoScreen} />
+    </Stack.Navigator>
+  );
+}
+function AllNavigationInProductScreen() {
+  return (
+    <Stack.Navigator initialRouteName="ProductScreen">
+      <Stack.Screen name="ProductScreen" component={ProductScreen} />
+      <Stack.Screen name="ReviewScreen" component={ReviewScreen} />
+    </Stack.Navigator>
+  );
+}
+function AllNavigationInHomeProductScreen() {
+  return (
+    <Stack.Navigator initialRouteName="HomeProduct">
+      <Stack.Screen name="ProductScreen" component={ProductScreen} />
+      <Stack.Screen name="HomeProduct" component={HomeProduct} />
     </Stack.Navigator>
   );
 }
@@ -222,7 +249,7 @@ function ToProductPage() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="ProductDetail" component={ProductDetail} />
+      <Stack.Screen name="ProductScreen" component={ProductScreen} />
     </Stack.Navigator>
   );
 }

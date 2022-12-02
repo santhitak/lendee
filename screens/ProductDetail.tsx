@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { Text, Button, Div } from "react-native-magnus";
 
@@ -26,14 +26,20 @@ const data: ProductTypes[] = [
   },
 ];
 
-const ProductDetail = () => {
-  const [product, setProduct] = useState<ProductTypes[]>(data);
+const ProductDetail = ({ navigation, route }: any) => {
+  const [product, setProduct] = useState<ProductTypes[]>(route.params.product);
+
   const [fav, setFav] = useState<boolean>(false);
 
   const setFavorite = (product: ProductTypes) => {
     product.favorite = fav;
   };
-
+  useEffect(() => {
+    console.log(
+      "🚀 ~ file: ProductDetail.tsx ~ line 31 ~ ProductDetail ~ route.params.product",
+      route.params.product
+    );
+  });
   return (
     <ScrollView>
       <SafeAreaView>

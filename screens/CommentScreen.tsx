@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { Avatar, Div, Input, Text } from "react-native-magnus";
-import { Container } from "../components/Container";
+import { Container } from "../components";
 import { CommentTypes } from "../constants";
 
 const MockData: CommentTypes[] = [

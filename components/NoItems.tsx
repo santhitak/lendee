@@ -6,7 +6,7 @@ const NoItems = ({ navigation }: any) => {
     <Div
       w={"100%"}
       h={"auto"}
-      minH={"80%"}
+      minH={"50%"}
       justifyContent={"center"}
       alignItems={"center"}
     >
@@ -51,18 +51,6 @@ const NoItems = ({ navigation }: any) => {
       <Text fontSize={28} fontWeight={"bold"}>
         ไม่มีสินค้าที่วางให้ยืม
       </Text>
-      <Button
-        w={"100%"}
-        bg={"#FFB54D"}
-        color={"#212121"}
-        onPress={() => {
-          navigation.navigate("Home");
-        }}
-        position={"absolute"}
-        bottom={10}
-      >
-        กลับหน้าหลัก
-      </Button>
     </Div>
   );
 };

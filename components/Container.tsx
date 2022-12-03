@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import { Div } from "react-native-magnus";
 
 type Props = {
@@ -8,13 +8,18 @@ type Props = {
 
 const Container = ({ children }: Props) => {
   return (
-    <SafeAreaView>
-      <Div w="100vw" h="100vh" bg="white">
-        <Div h={"100%"} style={style.container}>
-          {children}
+    <ScrollView
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+    >
+      <SafeAreaView>
+        <Div w="100vw" minH="100vh" bg="white">
+          <Div h={"100%"} style={style.container}>
+            {children}
+          </Div>
         </Div>
-      </Div>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { Text, Button, Icon, Div, Image } from "react-native-magnus";
-import { Container } from "../components/Container";
+import { Container } from "../components";
 import HomeProduct from "../components/HomeProduct";
 import { ProductTypes } from "../constants";
 

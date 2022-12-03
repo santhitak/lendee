@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export const Container = ({ children }: Props) => {
+const Container = ({ children }: Props) => {
   return (
     <SafeAreaView>
       <Div w="100vw" h="100vh" bg="white">
@@ -24,3 +24,5 @@ const style = StyleSheet.create({
     paddingVertical: 20,
   },
 });
+
+export default Container;

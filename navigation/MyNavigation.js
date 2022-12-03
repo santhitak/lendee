@@ -14,6 +14,7 @@ import HomeProduct from "../components/HomeProduct";
 import ReviewScreen from "../screens/ReviewScreen";
 import CommentScreen from "../screens/CommentScreen";
 import ProductInfoScreen from "../screens/ProductInfoScreen";
+import CreateProductScreen from "../screens/CreateProductScreen"
 
 //Categories Screen
 import TypeArtScreen from "../screens/categoriesScreen/TypeArtScreen";
@@ -48,7 +49,7 @@ function assign() {
 
 function HomeAndFavoriteAndProfile() {
   return (
-    <Tab.Navigator initialRouteName="Profile">
+    <Tab.Navigator initialRouteName="AllNavigationInHome">
       <Tab.Screen
         name="AllNavigationInHome"
         component={AllNavigationInHomeScreen}
@@ -167,6 +168,7 @@ function AllNavigationInHomeScreen() {
       />
       <Stack.Screen name="HomeProduct" component={HomeProduct} />
       <Stack.Screen name="ProductScreen" component={ProductScreen} />
+      <Stack.Screen name="CreateProductScreen" component={CreateProductScreen} />
 
       {/* Nav In ProductScreen */}
       <Stack.Screen name="ReviewScreen" component={ReviewScreen} />

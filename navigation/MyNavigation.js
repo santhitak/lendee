@@ -78,7 +78,7 @@ function HomeAndFavoriteAndProfile() {
               </>
             );
           },
-          tabBarActiveTintColor: "tomato",
+          tabBarActiveTintColor: "#231F20",
           tabBarInactiveTintColor: "gray",
         }}
       />
@@ -109,7 +109,7 @@ function HomeAndFavoriteAndProfile() {
               </>
             );
           },
-          tabBarActiveTintColor: "tomato",
+          tabBarActiveTintColor: "#231F20",
           tabBarInactiveTintColor: "gray",
         }}
       />
@@ -144,7 +144,7 @@ function HomeAndFavoriteAndProfile() {
               </>
             );
           },
-          tabBarActiveTintColor: "tomato",
+          tabBarActiveTintColor: "#231F20",
           tabBarInactiveTintColor: "gray",
         }}
       />

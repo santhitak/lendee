@@ -6,6 +6,7 @@ export type ProductTypes = {
   productCost: number;
   productQuantity: number;
   productUrl: string;
+  productImage: string;
   isFavorite: boolean;
 };
 

@@ -13,16 +13,15 @@ const HomeProduct = ({ navigation }: any) => {
       .then((response) => response.json())
       .then((json) => {
         setProduct(json);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  });
-  useState(() => {
-    fetch("http://localhost:3000/productImages")
-      .then((response) => response.json())
-      .then((json) => {
-        setImg(json);
+
+        fetch(`http://localhost:3000/productImages`)
+          .then((response) => response.json())
+          .then((json) => {
+            setImg(json);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
       .catch((error) => {
         console.error(error);
@@ -32,6 +31,7 @@ const HomeProduct = ({ navigation }: any) => {
   const setFavorite = (product: ProductTypes) => {
     product.isFavorite = fav;
   };
+
   const navigateToProductPage = (item: ProductTypes) => {
     let product = [];
     product.push(item);
@@ -63,16 +63,17 @@ const HomeProduct = ({ navigation }: any) => {
                         return (
                           <Div
                             rounded="xl"
-                            h={150}
+                            h={180}
+                            w={"100%"}
                             bgImg={{
                               uri: itemImage.img,
                             }}
+                            bgMode={"cover"}
                             key={i}
                           ></Div>
                         );
                       }
                     })}
-
                     <Div row alignItems="center">
                       <Div flex={1}>
                         <Text fontWeight="bold" fontSize="xl" mt="sm">

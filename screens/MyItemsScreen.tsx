@@ -23,7 +23,21 @@ const MyItemsScreen = ({ navigation }: any) => {
           })}
         </>
       ) : (
-        <NoItems />
+        <Div w="100%" minH={"70vh"} justifyContent="center" alignItems="center">
+          <NoItems />
+          <Button
+            w={"100%"}
+            bg={"#FFB54D"}
+            color={"#212121"}
+            onPress={() => {
+              navigation.navigate("Home");
+            }}
+            position={"absolute"}
+            bottom={10}
+          >
+            กลับหน้าหลัก
+          </Button>
+        </Div>
       )}
     </Container>
   );

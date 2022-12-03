@@ -1,5 +1,5 @@
 import { SafeAreaView, ScrollView } from "react-native";
-import { Text, Icon, Div, Input } from "react-native-magnus";
+import { Text, Icon, Div, Input, Button } from "react-native-magnus";
 import ButtonCategories from "../components/Home/ButtonCategories";
 import HomeProduct from "../components/HomeProduct";
 
@@ -30,7 +30,7 @@ const HomeScreen = ({ navigation }: any) => {
               <ButtonCategories />
             </ScrollView>
             <Div row>
-              <Input
+              {/* <Input
                 placeholder="สร้างโพสต์ใหม่"
                 p={10}
                 my={10}
@@ -40,9 +40,27 @@ const HomeScreen = ({ navigation }: any) => {
                 fontWeight="bold"
                 borderColor="gray200"
                 suffix={
-                  <Icon name="edit" color="gray500" fontFamily="AntDesign" />
+                  <Icon name="edit" color="gray500" fontFamily="AntDesign"/>
                 }
-              />
+              /> */}
+              <Button
+                block
+                my={10}
+                w="100%"
+                bg="#EEE"
+                color="#BDBDBD"
+                fontWeight="bold"
+                borderColor="gray200"
+                justifyContent="space-between"
+                onPress={() => {
+                  navigation.navigate("CreateProductScreen");
+                }}
+                suffix={
+                  <Icon name="edit" color="gray500" fontFamily="AntDesign"/>
+                }
+              >
+                สร้างโพสต์ใหม่
+              </Button>
             </Div>
           </Div>
           <Div row my={10} mx={15}>

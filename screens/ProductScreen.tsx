@@ -3,15 +3,17 @@ import { SafeAreaView, ScrollView } from "react-native";
 import { Text, Button, Icon, Div, Image } from "react-native-magnus";
 import { Container } from "../components";
 import HomeProduct from "../components/HomeProduct";
-import { ProductTypes } from "../constants";
+import { ProductTypes, ProductImageTypes } from "../constants";
 
 const ProductScreen = ({ route, navigation }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>(route.params.product);
   const [fav, setFav] = useState<boolean>(false);
+  const [img, setImg] = useState<ProductImageTypes[]>([]);
 
   const setFavorite = (product: ProductTypes) => {
-    product.favorite = fav;
+    product.isFavorite = fav;
   };
+
   const navigateToReviewScreen = () => {
     navigation.navigate("ReviewScreen");
   };
@@ -19,8 +21,28 @@ const ProductScreen = ({ route, navigation }: any) => {
     navigation.navigate("CommentScreen");
   };
   const navigateToProductInfoScreen = () => {
-    navigation.navigate("ProductInfoScreen");
+    navigation.navigate("ProductInfoScreen", { product: product });
   };
+  // useState(() => {
+  //   fetch("http://localhost:3000/products")
+  //     .then((response) => response.json())
+  //     .then((json) => {
+  //       setProduct(json);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // });
+  useState(() => {
+    fetch("http://localhost:3000/productImages")
+      .then((response) => response.json())
+      .then((json) => {
+        setImg(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView>
@@ -36,15 +58,20 @@ const ProductScreen = ({ route, navigation }: any) => {
                 key={i}
               >
                 <Div>
-                  <Div h={"30vh"}>
-                    <Image
-                      h={"100%"}
-                      w={"100%"}
-                      source={{
-                        uri: item.productImage,
-                      }}
-                    />
-                  </Div>
+                  {img.map((itemImage: ProductImageTypes, i: number) => {
+                    if (itemImage.productId === item.id) {
+                      return (
+                        <Div
+                          rounded="xl"
+                          h={150}
+                          bgImg={{
+                            uri: itemImage.img,
+                          }}
+                          key={i}
+                        ></Div>
+                      );
+                    }
+                  })}
 
                   <Container>
                     <Div row alignItems="center" my={"lg"} mx={"lg"}>
@@ -57,7 +84,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                         </Text>
                       </Div>
                       <Div row alignItems="center">
-                        {item.favorite ? (
+                        {item.isFavorite ? (
                           <svg
                             width="24"
                             height="24"
@@ -128,7 +155,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                               key={i}
                             >
                               <Text color="white">
-                                {item.productCategories}
+                                {/* {item.productCategories} */}
                               </Text>
                             </Button>
                           );

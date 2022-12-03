@@ -21,3 +21,9 @@ export type CommentTypes = {
   detail: string;
   createdAt: string;
 };
+
+export type ProductImageTypes = {
+  id: number;
+  img: string;
+  productId: number;
+};

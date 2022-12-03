@@ -1,15 +1,12 @@
 import { Text, Div } from "react-native-magnus";
 import React, { useState } from "react";
-import { ProductTypes } from "../constants";
+import { ProductTypes, ProductImageTypes } from "../constants";
 import { SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 
 const HomeProduct = ({ navigation }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>([]);
+  const [img, setImg] = useState<ProductImageTypes[]>([]);
   const [fav, setFav] = useState<boolean>(false);
-
-  const setFavorite = (product: ProductTypes) => {
-    product.favorite = fav;
-  };
 
   useState(() => {
     fetch("http://localhost:3000/products")
@@ -21,7 +18,20 @@ const HomeProduct = ({ navigation }: any) => {
         console.error(error);
       });
   });
+  useState(() => {
+    fetch("http://localhost:3000/productImages")
+      .then((response) => response.json())
+      .then((json) => {
+        setImg(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
 
+  const setFavorite = (product: ProductTypes) => {
+    product.isFavorite = fav;
+  };
   const navigateToProductPage = (item: ProductTypes) => {
     let product = [];
     product.push(item);
@@ -48,13 +58,21 @@ const HomeProduct = ({ navigation }: any) => {
                       navigateToProductPage(item);
                     }}
                   >
-                    <Div
-                      rounded="xl"
-                      h={150}
-                      bgImg={{
-                        uri: item.productImage,
-                      }}
-                    ></Div>
+                    {img.map((itemImage: ProductImageTypes, i: number) => {
+                      if (itemImage.productId === item.id) {
+                        return (
+                          <Div
+                            rounded="xl"
+                            h={150}
+                            bgImg={{
+                              uri: itemImage.img,
+                            }}
+                            key={i}
+                          ></Div>
+                        );
+                      }
+                    })}
+
                     <Div row alignItems="center">
                       <Div flex={1}>
                         <Text fontWeight="bold" fontSize="xl" mt="sm">
@@ -70,7 +88,7 @@ const HomeProduct = ({ navigation }: any) => {
                         </Text>
                       </Div>
                       <Div row alignItems="center">
-                        {item.favorite ? (
+                        {item.isFavorite ? (
                           <svg
                             width="24"
                             height="24"

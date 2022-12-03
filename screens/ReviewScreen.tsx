@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { Avatar, Div, Text } from "react-native-magnus";
-import { Container } from "../components/Container";
+import { Container } from "../components";
 import { ReviewTypes } from "../constants";
 import { Rating } from "react-simple-star-rating";
 
@@ -44,7 +44,7 @@ const ReviewScreen = () => {
               <Div key={i} my={10}>
                 <Div row justifyContent="space-between" alignItems="center">
                   <Div row>
-                    <Rating />
+                    <Rating size={18} style={{ marginBottom: 5 }} />
                   </Div>
                   <Text color="#9e9e9e">{data.createdAt}</Text>
                 </Div>

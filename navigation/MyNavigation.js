@@ -14,6 +14,7 @@ import HomeProduct from "../components/HomeProduct";
 import ReviewScreen from "../screens/ReviewScreen";
 import CommentScreen from "../screens/CommentScreen";
 import ProductInfoScreen from "../screens/ProductInfoScreen";
+import AddReviewScreen from "../screens/AddReviewScreen";
 
 //Categories Screen
 import TypeArtScreen from "../screens/categoriesScreen/TypeArtScreen";
@@ -48,7 +49,7 @@ function assign() {
 
 function HomeAndFavoriteAndProfile() {
   return (
-    <Tab.Navigator initialRouteName="Profile">
+    <Tab.Navigator initialRouteName="AllNavigationInHome">
       <Tab.Screen
         name="AllNavigationInHome"
         component={AllNavigationInHomeScreen}
@@ -170,8 +171,56 @@ function AllNavigationInHomeScreen() {
 
       {/* Nav In ProductScreen */}
       <Stack.Screen name="ReviewScreen" component={ReviewScreen} />
+      <Stack.Screen name="AddReviewScreen" component={AddReviewScreen} />
       <Stack.Screen name="CommentScreen" component={CommentScreen} />
       <Stack.Screen name="ProductInfoScreen" component={ProductInfoScreen} />
+      <Stack.Screen
+        name="AllCategoriesScreen"
+        component={AllCategoriesScreen}
+        options={{ title: "หมวดหมู่ทั้งหมด" }}
+      />
+
+      <Stack.Screen name="AllCategories" component={AllCategoriesScreen} />
+      <Stack.Screen
+        name="TypeArt"
+        component={TypeArtScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeCooking"
+        component={TypeCookingScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeElectric"
+        component={TypeElectricScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeElectronic"
+        component={TypeElectronicScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeFurniture"
+        component={TypeFurnitureScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeSports"
+        component={TypeSportsScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeStationery"
+        component={TypeStationeryScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeCostume"
+        component={TypeCostumeScreen}
+        options={{ headerLeft: () => null }}
+      />
     </Stack.Navigator>
   );
 }

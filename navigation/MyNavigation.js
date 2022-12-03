@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Avatar, Div, Text } from "react-native-magnus";
 
 //screens
 import HomeScreen from "../screens/HomeScreen";
@@ -27,6 +28,7 @@ import TypeSportsScreen from "../screens/categoriesScreen/TypeSportsScreen";
 import TypeStationeryScreen from "../screens/categoriesScreen/TypeStationeryScreen";
 
 import ProductScreen from "../screens/ProductScreen";
+import { Button } from "react-native-magnus";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -157,7 +159,7 @@ function AllNavigationInProfileScreen() {
   );
 }
 
-function AllNavigationInHomeScreen() {
+function AllNavigationInHomeScreen({ navigation }) {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} />
@@ -170,7 +172,17 @@ function AllNavigationInHomeScreen() {
       <Stack.Screen name="ProductScreen" component={ProductScreen} />
 
       {/* Nav In ProductScreen */}
-      <Stack.Screen name="ReviewScreen" component={ReviewScreen} />
+      <Stack.Screen
+        name="ReviewScreen"
+        component={ReviewScreen}
+        options={{
+          headerRight: () => (
+            <Text onPress={() => navigation.navigate("AddReviewScreen")}>
+              New review
+            </Text>
+          ),
+        }}
+      />
       <Stack.Screen name="AddReviewScreen" component={AddReviewScreen} />
       <Stack.Screen name="CommentScreen" component={CommentScreen} />
       <Stack.Screen name="ProductInfoScreen" component={ProductInfoScreen} />

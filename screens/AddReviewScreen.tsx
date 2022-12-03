@@ -83,7 +83,7 @@ const AddReviewScreen = ({ navigation }: any) => {
           bg="#1F4492"
           color="#fff"
           underlayColor="blue700"
-          // onPress={() => navigation.navigate("ReviewScreen")}
+          onPress={() => navigation.navigate("ReviewScreen")}
         >
           Send review
         </Button>

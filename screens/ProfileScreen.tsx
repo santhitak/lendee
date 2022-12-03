@@ -19,6 +19,9 @@ const ProfileScreen = ({ navigation }: any) => {
   const [edit, setEdit] = useState(false);
   const [newName, setNewName] = useState<string>(user.name);
   const [newPhone, setNewPhone] = useState<string>(user.phone);
+  const navigateToLoginScreen = () => {
+    navigation.navigate("LoginScreen");
+  };
 
   return (
     <>
@@ -151,7 +154,12 @@ const ProfileScreen = ({ navigation }: any) => {
                         fill="#231F20"
                       />
                     </svg>
-                    <Text fontSize={16} ml={10} fontWeight={"600"}>
+                    <Text
+                      fontSize={16}
+                      ml={10}
+                      fontWeight={"600"}
+                      onPress={() => navigateToLoginScreen()}
+                    >
                       Sign out
                     </Text>
                   </Div>

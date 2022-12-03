@@ -1,6 +1,9 @@
 import { Image, Text, Button, Div } from "react-native-magnus";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }: any) => {
+  const navigateToHomeScreen = () => {
+    navigation.navigate("HomeAndFavoriteAndProfile");
+  };
   return (
     <Div w="100vw" h="20vh">
       <Div w="100%" h="100%" flex={1} justifyContent="space-between">
@@ -13,6 +16,7 @@ const LoginScreen = () => {
           </Text>
         </Div>
         <Button
+          onPress={() => navigateToHomeScreen()}
           block
           prefix={
             <Image

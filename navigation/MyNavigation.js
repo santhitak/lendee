@@ -14,6 +14,7 @@ import HomeProduct from "../components/HomeProduct";
 import ReviewScreen from "../screens/ReviewScreen";
 import CommentScreen from "../screens/CommentScreen";
 import ProductInfoScreen from "../screens/ProductInfoScreen";
+import LoginScreen from "../screens/LoginScreen";
 
 //Categories Screen
 import TypeArtScreen from "../screens/categoriesScreen/TypeArtScreen";
@@ -30,25 +31,23 @@ import ProductScreen from "../screens/ProductScreen";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function assign() {
+function Assign() {
   return (
-    <Stack.Navigator
-      //   initialRouteName="HomeAndFavoriteAndProfile"
-      screenOptions={{
-        headerStyle: { backgroundColor: "#4a148c" },
-        headerTintColor: "white",
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="MyItems" component={MyItemsScreen} />
-      <Stack.Screen name="MyLends" component={MyLendsScreen} />
+    <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Screen
+        name="HomeAndFavoriteAndProfile"
+        component={HomeAndFavoriteAndProfile}
+      />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
     </Stack.Navigator>
   );
 }
-
+{
+  /* <Stack.Screen name="Login" component={LoginScreen} /> */
+}
 function HomeAndFavoriteAndProfile() {
   return (
-    <Tab.Navigator initialRouteName="Profile">
+    <Tab.Navigator initialRouteName="AllNavigationInHome">
       <Tab.Screen
         name="AllNavigationInHome"
         component={AllNavigationInHomeScreen}
@@ -155,7 +154,11 @@ function HomeAndFavoriteAndProfile() {
 function AllNavigationInProfileScreen() {
   return (
     <Stack.Navigator initialRouteName="Profile">
-      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ headerLeft: null }}
+      />
       <Stack.Screen name="MyItems" component={MyItemsScreen} />
       <Stack.Screen name="MyLends" component={MyLendsScreen} />
     </Stack.Navigator>
@@ -165,7 +168,11 @@ function AllNavigationInProfileScreen() {
 function AllNavigationInHomeScreen() {
   return (
     <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerLeft: null }}
+      />
       <Stack.Screen
         name="AllCategoriesInAllCategories"
         component={StackInAllCategoriesScreen}
@@ -263,7 +270,18 @@ function ToProductPage() {
 export default function MyNavigation() {
   return (
     <NavigationContainer>
-      <HomeAndFavoriteAndProfile />
+      <Stack.Navigator initialRouteName="LoginScreen">
+        <Stack.Screen
+          name="HomeAndFavoriteAndProfile"
+          component={HomeAndFavoriteAndProfile}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{ headerShown: false, headerLeft: null }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

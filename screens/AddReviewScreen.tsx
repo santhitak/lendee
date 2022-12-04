@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, ScrollView } from "react-native";
-import { Avatar, Div, Text, Input, Button } from "react-native-magnus";
-// import { Container } from "../components/Container";
+import { Div, Text, Input, Button } from "react-native-magnus";
 import { ReviewTypes } from "../constants";
 import { Rating } from "react-simple-star-rating";
 

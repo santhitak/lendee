@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { Text, Button, Icon, Div, Image } from "react-native-magnus";
 import { Container } from "../components";
 import HomeProduct from "../components/HomeProduct";
 import { ProductTypes, ProductImageTypes } from "../constants";
+import Toast from "react-native-root-toast";
 
 const ProductScreen = ({ route, navigation }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>(route.params.product);
   const [fav, setFav] = useState<boolean>(false);
   const [img, setImg] = useState<ProductImageTypes[]>([]);
   const [idNum, setIdNum] = useState<number>(0);
+  const [category, setCategory] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   const setFavorite = (id: number) => {
     if (fav) {
@@ -80,6 +84,25 @@ const ProductScreen = ({ route, navigation }: any) => {
         console.error(error);
       });
   });
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/categories/${product[0].id}`)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
+  if (showToast) {
+    let toast = Toast.show("ส่งคำขอยืมสิ่งของเรียบร้อยแล้ว");
+
+    setTimeout(function hideToast() {
+      Toast.hide(toast);
+    }, 1500);
+  }
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -166,6 +189,9 @@ const ProductScreen = ({ route, navigation }: any) => {
                         w={"100%"}
                         bg="#1F4492"
                         color="#fff"
+                        onPress={() => {
+                          setShowToast(!showToast);
+                        }}
                       >
                         ต้องการยืม
                       </Button>
@@ -201,24 +227,6 @@ const ProductScreen = ({ route, navigation }: any) => {
                     {product.map((item: ProductTypes, i: number) => {
                       return (
                         <Div key={i}>
-                          <Button
-                            block
-                            suffix={
-                              <Icon
-                                position="absolute"
-                                right={8}
-                                name="arrowright"
-                                color="black"
-                              />
-                            }
-                            bg="white"
-                            p={12}
-                            color="black"
-                            justifyContent="flex-start"
-                            onPress={() => navigateToProductInfoScreen()}
-                          >
-                            Product information
-                          </Button>
                           <Button
                             block
                             bg="white"

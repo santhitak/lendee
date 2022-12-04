@@ -8,6 +8,7 @@ export type ProductTypes = {
   productUrl: string;
   productImage: string;
   isFavorite: boolean;
+  authorId: number;
 };
 
 export type ReviewTypes = {
@@ -40,3 +41,17 @@ export type FavoriteProductTypes = {
   productId: number;
   userId: number;
 };
+
+export const allCategories = [
+  { id: 1, name: "เครื่องครัว" },
+  { id: 2, name: "เฟอร์นิเจอร์" },
+  { id: 3, name: "เครื่องใช้ไฟฟ้า" },
+  { id: 4, name: "แฟชั่น" },
+  { id: 5, name: "ของใช้ภายในบ้าน" },
+  { id: 6, name: "เครื่องมือ" },
+  { id: 7, name: "อุปกรณ์เล่นเกมส์" },
+  { id: 8, name: "อุปกรณ์กีฬา" },
+  { id: 9, name: "เครื่องประดับ" },
+  { id: 10, name: "อุปกรณ์ศิลปะ" },
+  { id: 11, name: "สัตว์เลี้ยง" },
+];

@@ -31,7 +31,38 @@ const HomeProduct = ({ navigation }: any) => {
       });
   });
 
-  const setFavorite = (product: ProductTypes) => {};
+  const setFavorite = (id: number) => {
+    if (fav) {
+      fetch(`http://localhost:3000/favorites/onFav/${id}`, {
+        method: "PUT",
+      }).then(() => fetching());
+    } else
+      fetch(`http://localhost:3000/favorites/offFav/${id}`, {
+        method: "DELETE",
+      }).then(() => fetching());
+  };
+
+  const fetching = () => {
+    fetch("http://localhost:3000/products")
+      .then((response) => response.json())
+      .then((json) => {
+        setProduct(json);
+
+        fetch(`http://localhost:3000/productImages`)
+          .then((response) => response.json())
+          .then((json) => {
+            const imageArr = [];
+            imageArr.push(json);
+            setImg(json);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const navigateToProductPage = (item: ProductTypes) => {
     let product = [];
@@ -61,7 +92,6 @@ const HomeProduct = ({ navigation }: any) => {
                   >
                     {img.map((itemImage: ProductImageTypes, i: number) => {
                       if (itemImage.productId === item.id) {
-                        console.log("check: " + itemImage.img.length);
                         return (
                           <Div
                             rounded="xl"
@@ -101,7 +131,7 @@ const HomeProduct = ({ navigation }: any) => {
                           xmlns="http://www.w3.org/2000/svg"
                           onClick={() => {
                             setFav(!fav);
-                            setFavorite(item);
+                            setFavorite(item.id);
                           }}
                         >
                           <path
@@ -118,7 +148,7 @@ const HomeProduct = ({ navigation }: any) => {
                           xmlns="http://www.w3.org/2000/svg"
                           onClick={() => {
                             setFav(!fav);
-                            setFavorite(item);
+                            setFavorite(item.id);
                           }}
                         >
                           <path

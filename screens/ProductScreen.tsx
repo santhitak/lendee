@@ -15,16 +15,60 @@ const ProductScreen = ({ route, navigation }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>(route.params.product);
   const [fav, setFav] = useState<boolean>(false);
   const [img, setImg] = useState<ProductImageTypes[]>([]);
-  const [category, setCategory] = useState<CategoryTypes[]>([]);
+  const [category, setCategory] = useState("");
+  const [idNum, setIdNum] = useState<number>(0);
   const [showToast, setShowToast] = useState(false);
   const [categoryName, setCategoryName] = useState("");
 
-  const setFavorite = (product: ProductTypes) => {
-    product.isFavorite = fav;
+  const setFavorite = (id: number) => {
+    if (fav) {
+      fetch(`http://localhost:3000/favorites/onFav/${id}`, {
+        method: "PUT",
+      });
+    } else
+      fetch(`http://localhost:3000/favorites/offFav/${id}`, {
+        method: "DELETE",
+      });
   };
+  // app.put("/favorites/onFav/:productId", async (req, res) => {
+  //   const { productId } = req.params;
+  //   const updateProduct = await prisma.product.update({
+  //     where: {
+  //       id: Number(productId),
+  //     },
+  //     data: {
+  //       isFavorite: true,
+  //     },
+  //   });
+  //   const updateFavorite = await prisma.favorite.create({
+  //     data: {
+  //       productId: Number(productId),
+  //       userId: 1,
+  //     },
+  //   });
+  //   res.json(`favorites has updated`);
+  // });
+  // app.delete("/favorites/offFav/:productId", async (req, res) => {
+  //   const { productId } = req.params;
+  //   const removeFavorite = await prisma.favorite.deleteMany({
+  //     where: {
+  //       productId: Number(productId),
+  //       userId: 1,
+  //     },
+  //   });
+  //   const updateIsFavorite = await prisma.product.update({
+  //     where: {
+  //       id: Number(productId),
+  //     },
+  //     data: {
+  //       isFavorite: false,
+  //     },
+  //   });
+  //   res.json(`favorite product has removed`);
+  // });
 
-  const navigateToReviewScreen = () => {
-    navigation.navigate("ReviewScreen");
+  const navigateToReviewScreen = (num: number) => {
+    navigation.navigate("ReviewScreen", { productId: num });
   };
 
   const navigateToCommentScreen = () => {
@@ -109,7 +153,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                           {item.productCost} บาท/เดือน
                         </Text>
                       </Div>
-                      <Div row alignItems="center">
+                      {/* <Div row alignItems="center">
                         {item.isFavorite ? (
                           <svg
                             width="24"
@@ -119,7 +163,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                             xmlns="http://www.w3.org/2000/svg"
                             onClick={() => {
                               setFav(!fav);
-                              setFavorite(item);
+                              setFavorite(item.id);
                             }}
                           >
                             <path
@@ -136,7 +180,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                             xmlns="http://www.w3.org/2000/svg"
                             onClick={() => {
                               setFav(!fav);
-                              setFavorite(item);
+                              setFavorite(item.id);
                             }}
                           >
                             <path
@@ -147,7 +191,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                             />
                           </svg>
                         )}
-                      </Div>
+                      </Div> */}
                     </Div>
                     <Div row justifyContent="center">
                       <Button
@@ -163,12 +207,14 @@ const ProductScreen = ({ route, navigation }: any) => {
                         ต้องการยืม
                       </Button>
                     </Div>
+
                     <Div>
                       <Div row mt={"xl"} mb={"sm"} mx={"lg"}>
                         <Text fontWeight="bold" fontSize="xl" color="gray700">
                           แท็กที่เกี่ยวข้อง
                         </Text>
                       </Div>
+
                       <Div row>
                         <Button
                           mt="xs"
@@ -185,44 +231,32 @@ const ProductScreen = ({ route, navigation }: any) => {
                         </Button>
                       </Div>
                     </Div>
-                    <Div>
-                      <Button
-                        block
-                        bg="white"
-                        p={12}
-                        color="black"
-                        justifyContent="flex-start"
-                        onPress={() => navigateToReviewScreen()}
-                        suffix={
-                          <Icon
-                            position="absolute"
-                            right={8}
-                            name="arrowright"
+                    {product.map((item: ProductTypes, i: number) => {
+                      return (
+                        <Div key={i}>
+                          <Button
+                            block
+                            bg="white"
+                            p={12}
                             color="black"
-                          />
-                        }
-                      >
-                        Reviews
-                      </Button>
-                      <Button
-                        block
-                        bg="white"
-                        p={12}
-                        color="black"
-                        justifyContent="flex-start"
-                        onPress={() => navigateToCommentScreen()}
-                        suffix={
-                          <Icon
-                            position="absolute"
-                            right={8}
-                            name="arrowright"
+                            justifyContent="flex-start"
+                            onPress={() => navigateToReviewScreen(item.id)}
+                          >
+                            Reviews
+                          </Button>
+                          <Button
+                            block
+                            bg="white"
+                            p={12}
                             color="black"
-                          />
-                        }
-                      >
-                        Comments
-                      </Button>
-                    </Div>
+                            justifyContent="flex-start"
+                            onPress={() => navigateToCommentScreen()}
+                          >
+                            Comments
+                          </Button>
+                        </Div>
+                      );
+                    })}
                   </Container>
                 </Div>
               </Div>

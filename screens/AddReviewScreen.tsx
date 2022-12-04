@@ -3,27 +3,27 @@ import { Div, Text, Input, Button } from "react-native-magnus";
 import { ReviewTypes } from "../constants";
 import { Rating } from "react-simple-star-rating";
 
-const MockData: ReviewTypes[] = [
-  {
-    name: "Trent Logan",
-    createdAt: "24 August, 12:00 pm",
-    detail: "ดีมากครับ ดีมากครับ",
-    rating: 5,
-  },
-  {
-    name: "Mojo Magnusito",
-    createdAt: "15 September, 9:20 pm",
-    detail: "ดีมากครับ ยอดเยี่ยมมากเลย",
-    rating: 2,
-  },
-  {
-    name: "Harmony Fitzgerald",
-    createdAt: "8 May, 11:10 am",
-    detail:
-      "ของดีครับแต่ขาโต๊ะเป็นรอยสองข้าง เจ้าของยืนยันไว้ว่ามีอยู่ก่อนแล้วครับ",
-    rating: 4,
-  },
-];
+// const MockData: ReviewTypes[] = [
+//   {
+//     name: "Trent Logan",
+//     createdAt: "24 August, 12:00 pm",
+//     detail: "ดีมากครับ ดีมากครับ",
+//     rating: 5,
+//   },
+//   {
+//     name: "Mojo Magnusito",
+//     createdAt: "15 September, 9:20 pm",
+//     detail: "ดีมากครับ ยอดเยี่ยมมากเลย",
+//     rating: 2,
+//   },
+//   {
+//     name: "Harmony Fitzgerald",
+//     createdAt: "8 May, 11:10 am",
+//     detail:
+//       "ของดีครับแต่ขาโต๊ะเป็นรอยสองข้าง เจ้าของยืนยันไว้ว่ามีอยู่ก่อนแล้วครับ",
+//     rating: 4,
+//   },
+// ];
 
 const labels: { [index: string]: string } = {
   1: "Useless",
@@ -33,9 +33,9 @@ const labels: { [index: string]: string } = {
   5: "Excellent",
 };
 
-const AddReviewScreen = ({ navigation }: any) => {
-  const [reviews, setReviews] = useState<ReviewTypes[]>(MockData);
-
+const AddReviewScreen = ({ navigation, route }: any) => {
+  // const [reviews, setReviews] = useState<ReviewTypes[]>(MockData);
+  const [text, setText] = useState("");
   const [rating, setRating] = useState(0);
 
   // Catch Rating value
@@ -43,6 +43,32 @@ const AddReviewScreen = ({ navigation }: any) => {
     setRating(rate);
 
     // other logic
+  };
+  const data = {};
+  const createReview = (
+    userId: number,
+    productId: number,
+    detail: string,
+    rating: number
+  ) => {
+    return fetch("http://localhost:3000/reviews/create", {
+      method: "POST",
+      mode: "cors",
+      // headers: {
+      //   Accept: "application/json",
+      //   "Content-Type": "application/json",
+      // "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
+      // "Access-Control-Allow-Headers":
+      //   "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+      // },
+      body: JSON.stringify({
+        userId: 1,
+        detail: "ดีมากครับ ดีมากครับ",
+        rating: 4,
+        productId: 14,
+      }),
+    });
   };
   // Optinal callback functions
   const onPointerEnter = () => console.log("Enter");
@@ -71,6 +97,8 @@ const AddReviewScreen = ({ navigation }: any) => {
           placeholder="Your review"
           p={4}
           w={"90%"}
+          value={text}
+          onChangeText={(text) => setText(text)}
           focusBorderColor="blue700"
         />
       </Div>
@@ -81,9 +109,9 @@ const AddReviewScreen = ({ navigation }: any) => {
           bg="#1F4492"
           color="#fff"
           underlayColor="blue700"
-          onPress={() => navigation.navigate("ReviewScreen")}
+          onPress={() => createReview(1, 14, text, rating)}
         >
-          Send review
+          Send review to {text} {rating}
         </Button>
       </Div>
     </Div>

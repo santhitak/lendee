@@ -8,6 +8,7 @@ export type ProductTypes = {
   productUrl: string;
   productImage: string;
   isFavorite: boolean;
+  authorId: number;
 };
 
 export type ReviewTypes = {

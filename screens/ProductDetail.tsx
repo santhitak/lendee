@@ -1,45 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { Text, Button, Div } from "react-native-magnus";
-
-type ProductTypes = {
-  productName: string;
-  productDetail: string;
-  productCost: number;
-  productUrl: string;
-  productImage: string;
-  favorite: boolean;
-  productCategories: Array<String>;
-};
-
-const data: ProductTypes[] = [
-  {
-    productName: "เก้าอี้",
-    productDetail:
-      "เก้าอี้คุณภาพชั้นดี ชั้นวางข้างเตียง เปิดให้เช่าแค่รายเดือนนะครับ บริการส่งฟรีรอบรั้วมหาวิทยาลัย ขออนุญาตเก็บค่ามัดจำล่วงหน้า 1 เดือนครับ",
-    productCost: 20,
-    productUrl: "",
-    productImage:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-    favorite: false,
-    productCategories: ["เฟอร์นิเจอร์", "testดึงค่า"],
-  },
-];
+import { ProductTypes } from "../constants";
 
 const ProductDetail = ({ navigation, route }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>(route.params.product);
-
   const [fav, setFav] = useState<boolean>(false);
 
   const setFavorite = (product: ProductTypes) => {
-    product.favorite = fav;
+    product.isFavorite = fav;
   };
+
   useEffect(() => {
-    console.log(
-      "🚀 ~ file: ProductDetail.tsx ~ line 31 ~ ProductDetail ~ route.params.product",
-      route.params.product
-    );
+    console.log(route.params.product);
   });
+
   return (
     <ScrollView>
       <SafeAreaView>
@@ -64,7 +39,7 @@ const ProductDetail = ({ navigation, route }: any) => {
                     </Text>
                   </Div>
                   <Div row alignItems="center">
-                    {item.favorite ? (
+                    {item.isFavorite ? (
                       <svg
                         width="24"
                         height="24"

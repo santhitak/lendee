@@ -30,19 +30,6 @@ const HomeScreen = ({ navigation }: any) => {
               <ButtonCategories />
             </ScrollView>
             <Div row>
-              {/* <Input
-                placeholder="สร้างโพสต์ใหม่"
-                p={10}
-                my={10}
-                w="100%"
-                bg="#EEE"
-                color="gray700"
-                fontWeight="bold"
-                borderColor="gray200"
-                suffix={
-                  <Icon name="edit" color="gray500" fontFamily="AntDesign"/>
-                }
-              /> */}
               <Button
                 block
                 my={10}
@@ -56,7 +43,7 @@ const HomeScreen = ({ navigation }: any) => {
                   navigation.navigate("CreateProductScreen");
                 }}
                 suffix={
-                  <Icon name="edit" color="gray500" fontFamily="AntDesign"/>
+                  <Icon name="edit" color="gray500" fontFamily="AntDesign" />
                 }
               >
                 สร้างโพสต์ใหม่

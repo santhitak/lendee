@@ -28,3 +28,9 @@ export type ProductImageTypes = {
   img: string;
   productId: number;
 };
+
+export type FavoriteProductTypes = {
+  id: number;
+  productId: number;
+  userId: number;
+};

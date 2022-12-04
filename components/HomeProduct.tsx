@@ -35,51 +35,33 @@ const HomeProduct = ({ navigation }: any) => {
     if (fav) {
       fetch(`http://localhost:3000/favorites/onFav/${id}`, {
         method: "PUT",
-      }).then(() =>
-        fetch("http://localhost:3000/products")
-          .then((response) => response.json())
-          .then((json) => {
-            setProduct(json);
-
-            fetch(`http://localhost:3000/productImages`)
-              .then((response) => response.json())
-              .then((json) => {
-                const imageArr = [];
-                imageArr.push(json);
-                setImg(json);
-              })
-              .catch((error) => {
-                console.error(error);
-              });
-          })
-          .catch((error) => {
-            console.error(error);
-          })
-      );
+      }).then(() => fetching());
     } else
       fetch(`http://localhost:3000/favorites/offFav/${id}`, {
         method: "DELETE",
-      }).then(() =>
-        fetch("http://localhost:3000/products")
+      }).then(() => fetching());
+  };
+
+  const fetching = () => {
+    fetch("http://localhost:3000/products")
+      .then((response) => response.json())
+      .then((json) => {
+        setProduct(json);
+
+        fetch(`http://localhost:3000/productImages`)
           .then((response) => response.json())
           .then((json) => {
-            setProduct(json);
-
-            fetch(`http://localhost:3000/productImages`)
-              .then((response) => response.json())
-              .then((json) => {
-                const imageArr = [];
-                imageArr.push(json);
-                setImg(json);
-              })
-              .catch((error) => {
-                console.error(error);
-              });
+            const imageArr = [];
+            imageArr.push(json);
+            setImg(json);
           })
           .catch((error) => {
             console.error(error);
-          })
-      );
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const navigateToProductPage = (item: ProductTypes) => {
@@ -110,7 +92,6 @@ const HomeProduct = ({ navigation }: any) => {
                   >
                     {img.map((itemImage: ProductImageTypes, i: number) => {
                       if (itemImage.productId === item.id) {
-                        console.log("check: " + itemImage.img.length);
                         return (
                           <Div
                             rounded="xl"

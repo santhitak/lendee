@@ -1,18 +1,23 @@
-import { useFocusEffect } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
-import { Text, Button, Icon, Div, Image } from "react-native-magnus";
+import { Text, Button, Icon, Div } from "react-native-magnus";
 import { Container } from "../components";
-import HomeProduct from "../components/HomeProduct";
-import { ProductTypes, ProductImageTypes } from "../constants";
+import {
+  ProductTypes,
+  ProductImageTypes,
+  allCategories,
+  CategoryTypes,
+} from "../constants";
 import Toast from "react-native-root-toast";
+import { useFocusEffect } from "@react-navigation/native";
 
 const ProductScreen = ({ route, navigation }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>(route.params.product);
   const [fav, setFav] = useState<boolean>(false);
   const [img, setImg] = useState<ProductImageTypes[]>([]);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState<CategoryTypes[]>([]);
   const [showToast, setShowToast] = useState(false);
+  const [categoryName, setCategoryName] = useState("");
 
   const setFavorite = (product: ProductTypes) => {
     product.isFavorite = fav;
@@ -26,10 +31,6 @@ const ProductScreen = ({ route, navigation }: any) => {
     navigation.navigate("CommentScreen");
   };
 
-  const navigateToProductInfoScreen = () => {
-    navigation.navigate("ProductInfoScreen", { product: product });
-  };
-
   useState(() => {
     fetch("http://localhost:3000/productImages")
       .then((response) => response.json())
@@ -41,15 +42,25 @@ const ProductScreen = ({ route, navigation }: any) => {
       });
   });
 
-  useEffect(() => {
+  useState(() => {
     fetch(`http://localhost:3000/categories/${product[0].id}`)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
+        setCategory(json);
       })
       .catch((error) => {
         console.error(error);
       });
+  });
+
+  useEffect(() => {
+    category.map((data) => {
+      allCategories.map((item) => {
+        if (item.id === data.categoryId) {
+          setCategoryName(item.name);
+        }
+      });
+    });
   });
 
   if (showToast) {
@@ -159,23 +170,19 @@ const ProductScreen = ({ route, navigation }: any) => {
                         </Text>
                       </Div>
                       <Div row>
-                        {product.map((item: ProductTypes, i: number) => {
-                          return (
-                            <Button
-                              mt="xs"
-                              ml="lg"
-                              px="lg"
-                              py="lg"
-                              h={"5%"}
-                              bg="gray700"
-                              rounded="circle"
-                              fontSize={14}
-                              key={i}
-                            >
-                              <Text color="white">{}</Text>
-                            </Button>
-                          );
-                        })}
+                        <Button
+                          mt="xs"
+                          ml="lg"
+                          px="lg"
+                          py="lg"
+                          h={"5%"}
+                          bg="gray700"
+                          rounded="circle"
+                          fontSize={14}
+                          key={i}
+                        >
+                          <Text color="white">{categoryName}</Text>
+                        </Button>
                       </Div>
                     </Div>
                     <Div>
@@ -215,19 +222,6 @@ const ProductScreen = ({ route, navigation }: any) => {
                       >
                         Comments
                       </Button>
-                    </Div>
-                    <Div>
-                      <Text
-                        fontWeight="bold"
-                        fontSize="2xl"
-                        ml={"lg"}
-                        mt={"xl"}
-                      >
-                        คุณอาจจะสนใจ
-                      </Text>
-                    </Div>
-                    <Div row>
-                      <HomeProduct navigation={navigation} />
                     </Div>
                   </Container>
                 </Div>

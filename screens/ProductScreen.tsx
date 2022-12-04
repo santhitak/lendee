@@ -210,16 +210,6 @@ const ProductScreen = ({ route, navigation }: any) => {
                           >
                             Reviews
                           </Button>
-                          <Button
-                            block
-                            bg="white"
-                            p={12}
-                            color="black"
-                            justifyContent="flex-start"
-                            onPress={() => navigateToCommentScreen()}
-                          >
-                            Comments
-                          </Button>
                         </Div>
                       );
                     })}

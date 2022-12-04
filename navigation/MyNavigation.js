@@ -18,6 +18,7 @@ import ProductInfoScreen from "../screens/ProductInfoScreen";
 import LoginScreen from "../screens/LoginScreen";
 import CreateProductScreen from "../screens/CreateProductScreen";
 import AddReviewScreen from "../screens/AddReviewScreen";
+import TypeProductScreen from "../screens/TypeProductScreen";
 
 //Categories Screen
 import TypeArtScreen from "../screens/categoriesScreen/TypeArtScreen";

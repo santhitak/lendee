@@ -9,13 +9,14 @@ const ProductScreen = ({ route, navigation }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>(route.params.product);
   const [fav, setFav] = useState<boolean>(false);
   const [img, setImg] = useState<ProductImageTypes[]>([]);
+  const [idNum, setIdNum] = useState<number>(0);
 
   const setFavorite = (product: ProductTypes) => {
     product.isFavorite = fav;
   };
 
-  const navigateToReviewScreen = () => {
-    navigation.navigate("ReviewScreen");
+  const navigateToReviewScreen = (num: number) => {
+    navigation.navigate("ReviewScreen", { productId: num });
   };
   const navigateToCommentScreen = () => {
     navigation.navigate("CommentScreen");
@@ -134,12 +135,14 @@ const ProductScreen = ({ route, navigation }: any) => {
                         ต้องการยืม
                       </Button>
                     </Div>
+
                     <Div>
                       <Div row mt={"xl"} mb={"sm"} mx={"lg"}>
                         <Text fontWeight="bold" fontSize="xl" color="gray700">
                           แท็กที่เกี่ยวข้อง
                         </Text>
                       </Div>
+
                       <Div row>
                         {product.map((item: ProductTypes, i: number) => {
                           return (
@@ -162,46 +165,51 @@ const ProductScreen = ({ route, navigation }: any) => {
                         })}
                       </Div>
                     </Div>
-                    <Div>
-                      <Button
-                        block
-                        suffix={
-                          <Icon
-                            position="absolute"
-                            right={8}
-                            name="arrowright"
+                    {product.map((item: ProductTypes, i: number) => {
+                      return (
+                        <Div key={i}>
+                          <Button
+                            block
+                            suffix={
+                              <Icon
+                                position="absolute"
+                                right={8}
+                                name="arrowright"
+                                color="black"
+                              />
+                            }
+                            bg="white"
+                            p={12}
                             color="black"
-                          />
-                        }
-                        bg="white"
-                        p={12}
-                        color="black"
-                        justifyContent="flex-start"
-                        onPress={() => navigateToProductInfoScreen()}
-                      >
-                        Product information
-                      </Button>
-                      <Button
-                        block
-                        bg="white"
-                        p={12}
-                        color="black"
-                        justifyContent="flex-start"
-                        onPress={() => navigateToReviewScreen()}
-                      >
-                        Reviews
-                      </Button>
-                      <Button
-                        block
-                        bg="white"
-                        p={12}
-                        color="black"
-                        justifyContent="flex-start"
-                        onPress={() => navigateToCommentScreen()}
-                      >
-                        Comments
-                      </Button>
-                    </Div>
+                            justifyContent="flex-start"
+                            onPress={() => navigateToProductInfoScreen()}
+                          >
+                            Product information
+                          </Button>
+                          <Button
+                            block
+                            bg="white"
+                            p={12}
+                            color="black"
+                            justifyContent="flex-start"
+                            onPress={() => navigateToReviewScreen(item.id)}
+                          >
+                            Reviews
+                          </Button>
+                          <Button
+                            block
+                            bg="white"
+                            p={12}
+                            color="black"
+                            justifyContent="flex-start"
+                            onPress={() => navigateToCommentScreen()}
+                          >
+                            Comments
+                          </Button>
+                        </Div>
+                      );
+                    })}
+
                     <Div>
                       <Text
                         fontWeight="bold"

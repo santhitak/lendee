@@ -14,12 +14,18 @@ export type ReviewTypes = {
   detail: string;
   createdAt: string;
   rating: number;
+  id: number;
+  userId: number;
+  productId: number;
 };
 
 export type CommentTypes = {
   name: string;
   detail: string;
   createdAt: string;
+  id: number;
+  userId: number;
+  productId: number;
 };
 
 export type ProductImageTypes = {

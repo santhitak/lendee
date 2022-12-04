@@ -15,7 +15,7 @@ const FavoriteScreen = ({ navigation }: any) => {
   const [img, setImg] = useState<ProductImageTypes[]>([]);
   const [fav, setFav] = useState<boolean>(false);
 
-  useEffect(() => {
+  useState(() => {
     fetch("http://localhost:3000/products")
       .then((response) => response.json())
       .then((json) => {
@@ -60,23 +60,55 @@ const FavoriteScreen = ({ navigation }: any) => {
     }
   };
 
-  const setFavorite = (product: ProductTypes) => {
-    favProd.forEach((v) => {
-      fetch(`http://localhost:3000/favorites/${v.id}/${product.id}`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then(() => {
-          console.log("remove like");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    });
+  const setFavorite = (id: number) => {
+    if (fav) {
+      fetch(`http://localhost:3000/favorites/onFav/${id}`, {
+        method: "PUT",
+      }).then(() =>
+        fetch("http://localhost:3000/products")
+          .then((response) => response.json())
+          .then((json) => {
+            setProduct(json);
+
+            fetch(`http://localhost:3000/productImages`)
+              .then((response) => response.json())
+              .then((json) => {
+                const imageArr = [];
+                imageArr.push(json);
+                setImg(json);
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+      );
+    } else
+      fetch(`http://localhost:3000/favorites/offFav/${id}`, {
+        method: "DELETE",
+      }).then(() =>
+        fetch("http://localhost:3000/products")
+          .then((response) => response.json())
+          .then((json) => {
+            setProduct(json);
+
+            fetch(`http://localhost:3000/productImages`)
+              .then((response) => response.json())
+              .then((json) => {
+                const imageArr = [];
+                imageArr.push(json);
+                setImg(json);
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+      );
   };
 
   const navigateToProductPage = (item: ProductTypes) => {
@@ -148,7 +180,7 @@ const FavoriteScreen = ({ navigation }: any) => {
                           xmlns="http://www.w3.org/2000/svg"
                           onClick={() => {
                             setFav(!fav);
-                            setFavorite(item);
+                            setFavorite(item.id);
                           }}
                         >
                           <path
@@ -165,7 +197,7 @@ const FavoriteScreen = ({ navigation }: any) => {
                           xmlns="http://www.w3.org/2000/svg"
                           onClick={() => {
                             setFav(!fav);
-                            setFavorite(item);
+                            setFavorite(item.id);
                           }}
                         >
                           <path

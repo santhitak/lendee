@@ -115,6 +115,9 @@ const ProductScreen = ({ route, navigation }: any) => {
                         <Text color="gray500" fontSize="md" mt={"xs"} mb={"lg"}>
                           {item.productCost} บาท/เดือน
                         </Text>
+                        <Text color="gray500" fontSize="md" mt={"xs"} mb={"lg"}>
+                          {item.productDetail}
+                        </Text>
                       </Div>
                       {/* <Div row alignItems="center">
                         {item.isFavorite ? (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { Div, Text, Avatar, Input, Button } from "react-native-magnus";
 
@@ -8,20 +8,35 @@ type User = {
   phone: string;
 };
 
-const data: User = {
-  name: "Morgan Freefarm",
-  email: "63070045@kmitl.ac.th",
-  phone: "0896598877",
-};
-
 const ProfileScreen = ({ navigation }: any) => {
-  const [user, setUser] = useState<User>(data);
+  const [user, setUser] = useState<User>({
+    name: "",
+    email: "",
+    phone: "",
+  });
   const [edit, setEdit] = useState(false);
-  const [newName, setNewName] = useState<string>(user.name);
-  const [newPhone, setNewPhone] = useState<string>(user.phone);
+  const [newName, setNewName] = useState<string>("");
+  const [newPhone, setNewPhone] = useState<string>("");
   const navigateToLoginScreen = () => {
     navigation.navigate("LoginScreen");
   };
+
+  useEffect(() => {
+    fetch("http://localhost:3000/users")
+      .then((response) => response.json())
+      .then((json) => {
+        json.map((item: any) => {
+          if (item.id === 1) {
+            setUser(item);
+            setNewName(item.name);
+            setNewPhone(item.phone);
+          }
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <>

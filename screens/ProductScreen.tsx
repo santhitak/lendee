@@ -9,13 +9,12 @@ import {
   CategoryTypes,
 } from "../constants";
 import Toast from "react-native-root-toast";
-import { useFocusEffect } from "@react-navigation/native";
 
 const ProductScreen = ({ route, navigation }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>(route.params.product);
   const [fav, setFav] = useState<boolean>(false);
   const [img, setImg] = useState<ProductImageTypes[]>([]);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState<CategoryTypes[]>([]);
   const [idNum, setIdNum] = useState<number>(0);
   const [showToast, setShowToast] = useState(false);
   const [categoryName, setCategoryName] = useState("");
@@ -30,42 +29,6 @@ const ProductScreen = ({ route, navigation }: any) => {
         method: "DELETE",
       });
   };
-  // app.put("/favorites/onFav/:productId", async (req, res) => {
-  //   const { productId } = req.params;
-  //   const updateProduct = await prisma.product.update({
-  //     where: {
-  //       id: Number(productId),
-  //     },
-  //     data: {
-  //       isFavorite: true,
-  //     },
-  //   });
-  //   const updateFavorite = await prisma.favorite.create({
-  //     data: {
-  //       productId: Number(productId),
-  //       userId: 1,
-  //     },
-  //   });
-  //   res.json(`favorites has updated`);
-  // });
-  // app.delete("/favorites/offFav/:productId", async (req, res) => {
-  //   const { productId } = req.params;
-  //   const removeFavorite = await prisma.favorite.deleteMany({
-  //     where: {
-  //       productId: Number(productId),
-  //       userId: 1,
-  //     },
-  //   });
-  //   const updateIsFavorite = await prisma.product.update({
-  //     where: {
-  //       id: Number(productId),
-  //     },
-  //     data: {
-  //       isFavorite: false,
-  //     },
-  //   });
-  //   res.json(`favorite product has removed`);
-  // });
 
   const navigateToReviewScreen = (num: number) => {
     navigation.navigate("ReviewScreen", { productId: num });

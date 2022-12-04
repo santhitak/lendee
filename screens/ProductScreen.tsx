@@ -1,26 +1,65 @@
-import React, { useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { Text, Button, Icon, Div, Image } from "react-native-magnus";
 import { Container } from "../components";
 import HomeProduct from "../components/HomeProduct";
-import { ProductTypes } from "../constants";
+import { ProductTypes, ProductImageTypes } from "../constants";
+import Toast from "react-native-root-toast";
 
 const ProductScreen = ({ route, navigation }: any) => {
   const [product, setProduct] = useState<ProductTypes[]>(route.params.product);
   const [fav, setFav] = useState<boolean>(false);
+  const [img, setImg] = useState<ProductImageTypes[]>([]);
+  const [category, setCategory] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   const setFavorite = (product: ProductTypes) => {
-    product.favorite = fav;
+    product.isFavorite = fav;
   };
+
   const navigateToReviewScreen = () => {
     navigation.navigate("ReviewScreen");
   };
+
   const navigateToCommentScreen = () => {
     navigation.navigate("CommentScreen");
   };
+
   const navigateToProductInfoScreen = () => {
-    navigation.navigate("ProductInfoScreen");
+    navigation.navigate("ProductInfoScreen", { product: product });
   };
+
+  useState(() => {
+    fetch("http://localhost:3000/productImages")
+      .then((response) => response.json())
+      .then((json) => {
+        setImg(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/categories/${product[0].id}`)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
+  if (showToast) {
+    let toast = Toast.show("ส่งคำขอยืมสิ่งของเรียบร้อยแล้ว");
+
+    setTimeout(function hideToast() {
+      Toast.hide(toast);
+    }, 1500);
+  }
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView>
@@ -36,16 +75,19 @@ const ProductScreen = ({ route, navigation }: any) => {
                 key={i}
               >
                 <Div>
-                  <Div h={"30vh"}>
-                    <Image
-                      h={"100%"}
-                      w={"100%"}
-                      source={{
-                        uri: item.productImage,
-                      }}
-                    />
-                  </Div>
-
+                  {img.map((itemImage: ProductImageTypes, i: number) => {
+                    if (itemImage.productId === item.id) {
+                      return (
+                        <Div
+                          h={350}
+                          bgImg={{
+                            uri: itemImage.img,
+                          }}
+                          key={i}
+                        />
+                      );
+                    }
+                  })}
                   <Container>
                     <Div row alignItems="center" my={"lg"} mx={"lg"}>
                       <Div flex={1} w="100%">
@@ -53,11 +95,11 @@ const ProductScreen = ({ route, navigation }: any) => {
                           {item.productName}
                         </Text>
                         <Text color="gray500" fontSize="md" mt={"xs"} mb={"lg"}>
-                          $ {item.productCost} per month
+                          {item.productCost} บาท/เดือน
                         </Text>
                       </Div>
                       <Div row alignItems="center">
-                        {item.favorite ? (
+                        {item.isFavorite ? (
                           <svg
                             width="24"
                             height="24"
@@ -103,6 +145,9 @@ const ProductScreen = ({ route, navigation }: any) => {
                         w={"100%"}
                         bg="#1F4492"
                         color="#fff"
+                        onPress={() => {
+                          setShowToast(!showToast);
+                        }}
                       >
                         ต้องการยืม
                       </Button>
@@ -127,9 +172,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                               fontSize={14}
                               key={i}
                             >
-                              <Text color="white">
-                                {item.productCategories}
-                              </Text>
+                              <Text color="white">{}</Text>
                             </Button>
                           );
                         })}
@@ -138,6 +181,11 @@ const ProductScreen = ({ route, navigation }: any) => {
                     <Div>
                       <Button
                         block
+                        bg="white"
+                        p={12}
+                        color="black"
+                        justifyContent="flex-start"
+                        onPress={() => navigateToReviewScreen()}
                         suffix={
                           <Icon
                             position="absolute"
@@ -146,21 +194,6 @@ const ProductScreen = ({ route, navigation }: any) => {
                             color="black"
                           />
                         }
-                        bg="white"
-                        p={12}
-                        color="black"
-                        justifyContent="flex-start"
-                        onPress={() => navigateToProductInfoScreen()}
-                      >
-                        Product information
-                      </Button>
-                      <Button
-                        block
-                        bg="white"
-                        p={12}
-                        color="black"
-                        justifyContent="flex-start"
-                        onPress={() => navigateToReviewScreen()}
                       >
                         Reviews
                       </Button>
@@ -171,6 +204,14 @@ const ProductScreen = ({ route, navigation }: any) => {
                         color="black"
                         justifyContent="flex-start"
                         onPress={() => navigateToCommentScreen()}
+                        suffix={
+                          <Icon
+                            position="absolute"
+                            right={8}
+                            name="arrowright"
+                            color="black"
+                          />
+                        }
                       >
                         Comments
                       </Button>

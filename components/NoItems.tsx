@@ -49,7 +49,7 @@ const NoItems = ({ navigation }: any) => {
         />
       </svg>
       <Text fontSize={28} fontWeight={"bold"}>
-        ไม่มีสินค้าที่วางให้ยืม
+        ไม่มีสินค้า
       </Text>
     </Div>
   );

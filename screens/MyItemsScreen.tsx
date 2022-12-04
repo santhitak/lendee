@@ -1,16 +1,37 @@
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import { Text, Div, Button } from "react-native-magnus";
+import { Text, Div, Button, Image } from "react-native-magnus";
 import { NoItems, Container } from "../components";
-
-const data = [
-  {
-    productName: "",
-  },
-];
+import { ProductImageTypes, ProductTypes } from "../constants";
 
 const MyItemsScreen = ({ navigation }: any) => {
-  const [item, setItem] = useState(data);
+  const [item, setItem] = useState<String[]>();
+  const [img, setImg] = useState<ProductImageTypes[]>([]);
+
+  useState(() => {
+    fetch("http://localhost:3000/products/1")
+      .then((response) => response.json())
+      .then((json) => {
+        const itemArr = [];
+        itemArr.push(json);
+        setItem(itemArr);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
+  useState(() => {
+    fetch("http://localhost:3000/productImages")
+      .then((response) => response.json())
+      .then((json) => {
+        setImg(json);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
   return (
     <Container>
       <Text fontSize={28} fontWeight={"bold"}>
@@ -19,7 +40,51 @@ const MyItemsScreen = ({ navigation }: any) => {
       {item ? (
         <>
           {item.map((item: any, i: number) => {
-            <Div key={i}></Div>;
+            return (
+              <Div key={i}>
+                {item.product.map((item: ProductTypes, i: number) => {
+                  if (item.authorId === 1) {
+                    return (
+                      <Div key={i}>
+                        <Div
+                          row
+                          alignItems="center"
+                          justifyContent="flex-start"
+                        >
+                          {img.map(
+                            (itemImage: ProductImageTypes, i: number) => {
+                              if (itemImage.productId === item.id) {
+                                return (
+                                  <Div
+                                    h={80}
+                                    w={80}
+                                    rounded={20}
+                                    bgImg={{
+                                      uri: itemImage.img,
+                                    }}
+                                    bgMode="cover"
+                                    key={i}
+                                  />
+                                );
+                              }
+                            }
+                          )}
+                          <Div my={15} ml={20}>
+                            <Text my={5} fontWeight="bold">
+                              {item.productName}
+                            </Text>
+                            <Button my={5} bg="#1F4492" color="white">
+                              ดูรายละเอียด
+                            </Button>
+                          </Div>
+                        </Div>
+                        <Text color="#9e9e9e">สถานะ: ว่าง</Text>
+                      </Div>
+                    );
+                  }
+                })}
+              </Div>
+            );
           })}
         </>
       ) : (

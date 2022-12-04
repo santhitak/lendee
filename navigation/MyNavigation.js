@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Avatar, Div, Text } from "react-native-magnus";
 
 //screens
 import HomeScreen from "../screens/HomeScreen";
@@ -15,6 +16,8 @@ import ReviewScreen from "../screens/ReviewScreen";
 import CommentScreen from "../screens/CommentScreen";
 import ProductInfoScreen from "../screens/ProductInfoScreen";
 import LoginScreen from "../screens/LoginScreen";
+import CreateProductScreen from "../screens/CreateProductScreen";
+import AddReviewScreen from "../screens/AddReviewScreen";
 
 //Categories Screen
 import TypeArtScreen from "../screens/categoriesScreen/TypeArtScreen";
@@ -27,6 +30,7 @@ import TypeSportsScreen from "../screens/categoriesScreen/TypeSportsScreen";
 import TypeStationeryScreen from "../screens/categoriesScreen/TypeStationeryScreen";
 
 import ProductScreen from "../screens/ProductScreen";
+import { Button } from "react-native-magnus";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -165,7 +169,7 @@ function AllNavigationInProfileScreen() {
   );
 }
 
-function AllNavigationInHomeScreen() {
+function AllNavigationInHomeScreen({ navigation }) {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
@@ -180,11 +184,73 @@ function AllNavigationInHomeScreen() {
       />
       <Stack.Screen name="HomeProduct" component={HomeProduct} />
       <Stack.Screen name="ProductScreen" component={ProductScreen} />
+      <Stack.Screen
+        name="CreateProductScreen"
+        component={CreateProductScreen}
+      />
 
       {/* Nav In ProductScreen */}
-      <Stack.Screen name="ReviewScreen" component={ReviewScreen} />
+      <Stack.Screen
+        name="ReviewScreen"
+        component={ReviewScreen}
+        options={{
+          headerRight: () => (
+            <Text onPress={() => navigation.navigate("AddReviewScreen")}>
+              New review
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen name="AddReviewScreen" component={AddReviewScreen} />
       <Stack.Screen name="CommentScreen" component={CommentScreen} />
       <Stack.Screen name="ProductInfoScreen" component={ProductInfoScreen} />
+      <Stack.Screen
+        name="AllCategoriesScreen"
+        component={AllCategoriesScreen}
+        options={{ title: "หมวดหมู่ทั้งหมด" }}
+      />
+
+      <Stack.Screen name="AllCategories" component={AllCategoriesScreen} />
+      <Stack.Screen
+        name="TypeArt"
+        component={TypeArtScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeCooking"
+        component={TypeCookingScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeElectric"
+        component={TypeElectricScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeElectronic"
+        component={TypeElectronicScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeFurniture"
+        component={TypeFurnitureScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeSports"
+        component={TypeSportsScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeStationery"
+        component={TypeStationeryScreen}
+        options={{ headerLeft: () => null }}
+      />
+      <Stack.Screen
+        name="TypeCostume"
+        component={TypeCostumeScreen}
+        options={{ headerLeft: () => null }}
+      />
     </Stack.Navigator>
   );
 }

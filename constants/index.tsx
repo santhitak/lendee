@@ -42,6 +42,12 @@ export type FavoriteProductTypes = {
   userId: number;
 };
 
+export type CategoryTypes = {
+  id: number;
+  productId: number;
+  categoryId: number;
+};
+
 export const allCategories = [
   { id: 1, name: "เครื่องครัว" },
   { id: 2, name: "เฟอร์นิเจอร์" },

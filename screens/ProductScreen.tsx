@@ -15,11 +15,11 @@ const ProductScreen = ({ route, navigation }: any) => {
     if (fav) {
       fetch(`http://localhost:3000/favorites/onFav/${id}`, {
         method: "PUT",
-      }).then(() => setProduct(route.params.product));
+      });
     } else
       fetch(`http://localhost:3000/favorites/offFav/${id}`, {
         method: "DELETE",
-      }).then(() => setProduct(route.params.product));
+      });
   };
   // app.put("/favorites/onFav/:productId", async (req, res) => {
   //   const { productId } = req.params;
@@ -119,7 +119,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                           {item.productCost} บาท/เดือน
                         </Text>
                       </Div>
-                      <Div row alignItems="center">
+                      {/* <Div row alignItems="center">
                         {item.isFavorite ? (
                           <svg
                             width="24"
@@ -157,7 +157,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                             />
                           </svg>
                         )}
-                      </Div>
+                      </Div> */}
                     </Div>
                     <Div row justifyContent="center">
                       <Button

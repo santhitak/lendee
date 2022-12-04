@@ -31,7 +31,56 @@ const HomeProduct = ({ navigation }: any) => {
       });
   });
 
-  const setFavorite = (product: ProductTypes) => {};
+  const setFavorite = (id: number) => {
+    if (fav) {
+      fetch(`http://localhost:3000/favorites/onFav/${id}`, {
+        method: "PUT",
+      }).then(() =>
+        fetch("http://localhost:3000/products")
+          .then((response) => response.json())
+          .then((json) => {
+            setProduct(json);
+
+            fetch(`http://localhost:3000/productImages`)
+              .then((response) => response.json())
+              .then((json) => {
+                const imageArr = [];
+                imageArr.push(json);
+                setImg(json);
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+      );
+    } else
+      fetch(`http://localhost:3000/favorites/offFav/${id}`, {
+        method: "DELETE",
+      }).then(() =>
+        fetch("http://localhost:3000/products")
+          .then((response) => response.json())
+          .then((json) => {
+            setProduct(json);
+
+            fetch(`http://localhost:3000/productImages`)
+              .then((response) => response.json())
+              .then((json) => {
+                const imageArr = [];
+                imageArr.push(json);
+                setImg(json);
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+      );
+  };
 
   const navigateToProductPage = (item: ProductTypes) => {
     let product = [];
@@ -101,7 +150,7 @@ const HomeProduct = ({ navigation }: any) => {
                           xmlns="http://www.w3.org/2000/svg"
                           onClick={() => {
                             setFav(!fav);
-                            setFavorite(item);
+                            setFavorite(item.id);
                           }}
                         >
                           <path
@@ -118,7 +167,7 @@ const HomeProduct = ({ navigation }: any) => {
                           xmlns="http://www.w3.org/2000/svg"
                           onClick={() => {
                             setFav(!fav);
-                            setFavorite(item);
+                            setFavorite(item.id);
                           }}
                         >
                           <path

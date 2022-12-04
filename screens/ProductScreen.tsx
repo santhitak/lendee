@@ -11,9 +11,52 @@ const ProductScreen = ({ route, navigation }: any) => {
   const [img, setImg] = useState<ProductImageTypes[]>([]);
   const [idNum, setIdNum] = useState<number>(0);
 
-  const setFavorite = (product: ProductTypes) => {
-    product.isFavorite = fav;
+  const setFavorite = (id: number) => {
+    if (fav) {
+      fetch(`http://localhost:3000/favorites/onFav/${id}`, {
+        method: "PUT",
+      }).then(() => setProduct(route.params.product));
+    } else
+      fetch(`http://localhost:3000/favorites/offFav/${id}`, {
+        method: "DELETE",
+      }).then(() => setProduct(route.params.product));
   };
+  // app.put("/favorites/onFav/:productId", async (req, res) => {
+  //   const { productId } = req.params;
+  //   const updateProduct = await prisma.product.update({
+  //     where: {
+  //       id: Number(productId),
+  //     },
+  //     data: {
+  //       isFavorite: true,
+  //     },
+  //   });
+  //   const updateFavorite = await prisma.favorite.create({
+  //     data: {
+  //       productId: Number(productId),
+  //       userId: 1,
+  //     },
+  //   });
+  //   res.json(`favorites has updated`);
+  // });
+  // app.delete("/favorites/offFav/:productId", async (req, res) => {
+  //   const { productId } = req.params;
+  //   const removeFavorite = await prisma.favorite.deleteMany({
+  //     where: {
+  //       productId: Number(productId),
+  //       userId: 1,
+  //     },
+  //   });
+  //   const updateIsFavorite = await prisma.product.update({
+  //     where: {
+  //       id: Number(productId),
+  //     },
+  //     data: {
+  //       isFavorite: false,
+  //     },
+  //   });
+  //   res.json(`favorite product has removed`);
+  // });
 
   const navigateToReviewScreen = (num: number) => {
     navigation.navigate("ReviewScreen", { productId: num });
@@ -86,7 +129,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                             xmlns="http://www.w3.org/2000/svg"
                             onClick={() => {
                               setFav(!fav);
-                              setFavorite(item);
+                              setFavorite(item.id);
                             }}
                           >
                             <path
@@ -103,7 +146,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                             xmlns="http://www.w3.org/2000/svg"
                             onClick={() => {
                               setFav(!fav);
-                              setFavorite(item);
+                              setFavorite(item.id);
                             }}
                           >
                             <path

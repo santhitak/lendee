@@ -53,17 +53,24 @@ const AddReviewScreen = ({ navigation, route }: any) => {
     detail: string,
     rating: number
   ) => {
-    fetch("http://localhost:3000/reviews/create", {
+    return fetch("http://localhost:3000/reviews/create", {
       method: "POST",
+      mode: "cors",
+      // headers: {
+      //   Accept: "application/json",
+      //   "Content-Type": "application/json",
+      // "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
+      // "Access-Control-Allow-Headers":
+      //   "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+      // },
       body: JSON.stringify({
         userId: 1,
         detail: "ดีมากครับ ดีมากครับ",
         rating: 4,
         productId: 14,
       }),
-    }).then((response) => console.log(response));
-
-    navigation.pop();
+    });
   };
   // Optinal callback functions
   const onPointerEnter = () => console.log("Enter");
@@ -104,7 +111,7 @@ const AddReviewScreen = ({ navigation, route }: any) => {
           bg="#1F4492"
           color="#fff"
           underlayColor="blue700"
-          onPress={() => createReview(1, route.params.productIds, text, rating)}
+          onPress={() => createReview(1, 14, text, rating)}
         >
           Send review to {text} {rating}
         </Button>

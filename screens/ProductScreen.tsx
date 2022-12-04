@@ -18,22 +18,15 @@ const ProductScreen = ({ route, navigation }: any) => {
   const navigateToReviewScreen = (num: number) => {
     navigation.navigate("ReviewScreen", { productId: num });
   };
+
   const navigateToCommentScreen = () => {
     navigation.navigate("CommentScreen");
   };
+
   const navigateToProductInfoScreen = () => {
     navigation.navigate("ProductInfoScreen", { product: product });
   };
-  // useState(() => {
-  //   fetch("http://localhost:3000/products")
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       setProduct(json);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // });
+
   useState(() => {
     fetch("http://localhost:3000/productImages")
       .then((response) => response.json())
@@ -44,6 +37,7 @@ const ProductScreen = ({ route, navigation }: any) => {
         console.error(error);
       });
   });
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView>
@@ -63,17 +57,15 @@ const ProductScreen = ({ route, navigation }: any) => {
                     if (itemImage.productId === item.id) {
                       return (
                         <Div
-                          rounded="xl"
-                          h={150}
+                          h={350}
                           bgImg={{
                             uri: itemImage.img,
                           }}
                           key={i}
-                        ></Div>
+                        />
                       );
                     }
                   })}
-
                   <Container>
                     <Div row alignItems="center" my={"lg"} mx={"lg"}>
                       <Div flex={1} w="100%">
@@ -81,7 +73,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                           {item.productName}
                         </Text>
                         <Text color="gray500" fontSize="md" mt={"xs"} mb={"lg"}>
-                          $ {item.productCost} per month
+                          {item.productCost} บาท/เดือน
                         </Text>
                       </Div>
                       <Div row alignItems="center">
@@ -157,9 +149,7 @@ const ProductScreen = ({ route, navigation }: any) => {
                               fontSize={14}
                               key={i}
                             >
-                              <Text color="white">
-                                {/* {item.productCategories} */}
-                              </Text>
+                              <Text color="white">{}</Text>
                             </Button>
                           );
                         })}

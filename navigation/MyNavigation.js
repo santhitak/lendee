@@ -15,6 +15,7 @@ import HomeProduct from "../components/HomeProduct";
 import ReviewScreen from "../screens/ReviewScreen";
 import CommentScreen from "../screens/CommentScreen";
 import ProductInfoScreen from "../screens/ProductInfoScreen";
+import CreateProductScreen from "../screens/CreateProductScreen"
 import AddReviewScreen from "../screens/AddReviewScreen";
 
 //Categories Screen
@@ -176,6 +177,7 @@ function AllNavigationInHomeScreen({ navigation }) {
       />
       <Stack.Screen name="HomeProduct" component={HomeProduct} />
       <Stack.Screen name="ProductScreen" component={ProductScreen} />
+      <Stack.Screen name="CreateProductScreen" component={CreateProductScreen} />
 
       {/* Nav In ProductScreen */}
       <Stack.Screen

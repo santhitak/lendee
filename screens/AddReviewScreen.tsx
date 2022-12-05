@@ -65,7 +65,7 @@ const AddReviewScreen = ({ navigation, route }: any) => {
   };
 
   return (
-    <Div>
+    <Div bg="#fff" flex={1}>
       <Div row justifyContent="center">
         <Rating
           onClick={handleRating}
@@ -96,7 +96,7 @@ const AddReviewScreen = ({ navigation, route }: any) => {
           underlayColor="blue700"
           onPress={() => createReview(1, 14, text, rating)}
         >
-          Send review to {text} {rating}
+          Send review
         </Button>
       </Div>
     </Div>

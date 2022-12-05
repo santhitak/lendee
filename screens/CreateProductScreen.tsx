@@ -23,7 +23,7 @@ const AddReviewScreen = ({ navigation }: any) => {
   ]);
 
   return (
-    <Div>
+    <Div bg="#fff" flex={1}>
       <Div row justifyContent="center" p={10} rounded="10">
         <UselessTextInput
           multiline
@@ -54,7 +54,7 @@ const AddReviewScreen = ({ navigation }: any) => {
           แนบรูปภาพ
         </Button>
       </Div>
-      <Div row>
+      {/* <Div row>
         <Image
           h={100}
           w={100}
@@ -73,7 +73,7 @@ const AddReviewScreen = ({ navigation }: any) => {
             uri: "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
           }}
         />
-      </Div>
+      </Div> */}
       <Div row justifyContent="center" my={10}>
         <Button
           w={"95%"}

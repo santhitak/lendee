@@ -197,17 +197,7 @@ function AllNavigationInHomeScreen({ navigation }) {
       />
 
       {/* Nav In ProductScreen */}
-      <Stack.Screen
-        name="ReviewScreen"
-        component={ReviewScreen}
-        options={{
-          headerRight: () => (
-            <Text onPress={() => navigation.navigate("AddReviewScreen")}>
-              New review
-            </Text>
-          ),
-        }}
-      />
+      <Stack.Screen name="ReviewScreen" component={ReviewScreen} />
       <Stack.Screen name="AddReviewScreen" component={AddReviewScreen} />
       <Stack.Screen name="CommentScreen" component={CommentScreen} />
       <Stack.Screen name="ProductInfoScreen" component={ProductInfoScreen} />

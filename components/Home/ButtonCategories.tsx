@@ -61,12 +61,12 @@ const data: categoriesList[] = [
   },
 ];
 
-const HomeButtonCategories = ({navigation}:any) => {
+const HomeButtonCategories = ({ navigation }: any) => {
   const [categories, setProduct] = useState<categoriesList[]>(data);
 
   return (
     <>
-      {categories.map(({ categoriesName,nav,id }: categoriesList, i: number) => {
+      {categories.map(({ categoriesName, id }: categoriesList, i: number) => {
         return (
           <View key={i}>
             <Button
@@ -79,7 +79,9 @@ const HomeButtonCategories = ({navigation}:any) => {
               color="#9E9E9E"
               underlayColor="blue700"
               fontWeight="bold"
-              onPress={() => navigation.navigate({nav},{id:id})}
+              onPress={() =>
+                navigation.navigate("TypeProductScreen", { id: id })
+              }
             >
               {categoriesName}
             </Button>

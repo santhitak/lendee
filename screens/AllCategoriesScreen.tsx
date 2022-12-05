@@ -10,7 +10,7 @@ const AllCategoriesScreen = ({ navigation }: any) => {
       <Div borderWidth={1}>
         <Text
           onPress={() => {
-            navigation.navigate("TypeElectric");
+            navigation.navigate("TypeProductScreen");
           }}
         >
           เครื่องใช้ไฟฟ้า

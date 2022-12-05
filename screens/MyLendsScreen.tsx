@@ -7,16 +7,16 @@ const MyLendsScreen = ({ navigation }: any) => {
   const [item, setItem] = useState<String[]>();
   const [user, setUser] = useState(1);
 
-  useState(() => {
-    fetch(`http://localhost:3000/lends/${user}`)
-      .then((response) => response.json())
-      .then((json) => {
-        setItem(json);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  });
+  // useState(() => {
+  //   fetch(`http://localhost:3000/lends/${user}`)
+  //     .then((response) => response.json())
+  //     .then((json) => {
+  //       setItem(json);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // });
 
   return (
     <Container>
@@ -25,7 +25,7 @@ const MyLendsScreen = ({ navigation }: any) => {
       </Text>
       {item?.length ? (
         <>
-          {item.map((item: any, i: number) => {
+          {/* {item.map((item: any, i: number) => {
             return (
               <Div key={i}>
                 {item.product.map((item: ProductTypes, i: number) => {
@@ -47,7 +47,7 @@ const MyLendsScreen = ({ navigation }: any) => {
                 })}
               </Div>
             );
-          })}
+          })} */}
         </>
       ) : (
         <Div w="100%" minH={"70vh"} justifyContent="center" alignItems="center">

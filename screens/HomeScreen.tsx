@@ -27,7 +27,7 @@ const HomeScreen = ({ navigation }: any) => {
               />
             </Div>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <ButtonCategories />
+              <ButtonCategories nav={navigation}/>
             </ScrollView>
             <Div row>
               <Button

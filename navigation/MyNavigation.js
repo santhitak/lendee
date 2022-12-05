@@ -18,6 +18,8 @@ import ProductInfoScreen from "../screens/ProductInfoScreen";
 import LoginScreen from "../screens/LoginScreen";
 import CreateProductScreen from "../screens/CreateProductScreen";
 import AddReviewScreen from "../screens/AddReviewScreen";
+import TypeProductScreen from "../screens/TypeProductScreen";
+import HomeButtonCategories from "../components/Home/ButtonCategories";
 
 //Categories Screen
 import TypeArtScreen from "../screens/categoriesScreen/TypeArtScreen";
@@ -172,6 +174,11 @@ function AllNavigationInProfileScreen() {
 function AllNavigationInHomeScreen({ navigation }) {
   return (
     <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="TypeProductScreen" component={TypeProductScreen} />
+      <Stack.Screen
+        name="HomeButtonCategories"
+        component={HomeButtonCategories}
+      />
       <Stack.Screen
         name="Home"
         component={HomeScreen}

@@ -51,24 +51,9 @@ const AddReviewScreen = ({ navigation, route }: any) => {
     detail: string,
     rating: number
   ) => {
-    return fetch("http://localhost:3000/reviews/create", {
-      method: "POST",
-      mode: "cors",
-      // headers: {
-      //   Accept: "application/json",
-      //   "Content-Type": "application/json",
-      // "Access-Control-Allow-Origin": "*",
-      // "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
-      // "Access-Control-Allow-Headers":
-      //   "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
-      // },
-      body: JSON.stringify({
-        userId: 1,
-        detail: "ดีมากครับ ดีมากครับ",
-        rating: 4,
-        productId: 14,
-      }),
-    });
+    return fetch(
+      `http://localhost:3000/reviews/create/${userId}/${detail}/${productId}/${rating}`
+    );
   };
   // Optinal callback functions
   const onPointerEnter = () => console.log("Enter");

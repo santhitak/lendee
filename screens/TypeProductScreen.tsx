@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { ProductTypes, ProductImageTypes, CategoryTypes } from "../constants";
 import { SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 
-const TypeProductScreen = ({ navigation }: any, typeId: number) => {
+const TypeProductScreen = ({ navigation, route }: any, typeId: number) => {
   const [product, setProduct] = useState<ProductTypes[]>([]);
   const [img, setImg] = useState<ProductImageTypes[]>([]);
   const [fav, setFav] = useState<boolean>(false);
-  const [typeProd, setTypeProd] = useState<CategoryTypes[]>([]);
+  const [typeProd, setTypeProd] = useState(route.params.id);
   const [favArr, setFavArr] = useState<[]>([]);
 
   useState(() => {
@@ -88,8 +88,8 @@ const TypeProductScreen = ({ navigation }: any, typeId: number) => {
             {product.map((item: ProductTypes, i: number) => {
               return (
                 <Div key={i}>
-                  {typeProd.map((data: CategoryTypes, i: number) => {
-                    if(data.productId === item.id){
+                  {typeProd.map((data: number, i: number) => {
+                    if (data === item.id) {
                       return (
                         <Div
                           my={20}

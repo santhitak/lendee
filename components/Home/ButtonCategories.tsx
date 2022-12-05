@@ -61,31 +61,35 @@ const data: categoriesList[] = [
   },
 ];
 
-const HomeButtonCategories = ({navigation}:any) => {
+const HomeButtonCategories = ({ navigation, props }: any) => {
   const [categories, setProduct] = useState<categoriesList[]>(data);
 
   return (
     <>
-      {categories.map(({ categoriesName,nav,id }: categoriesList, i: number) => {
-        return (
-          <View key={i}>
-            <Button
-              mt="lg"
-              mr={10}
-              px="xl"
-              py="lg"
-              h={40}
-              bg="#EEE"
-              color="#9E9E9E"
-              underlayColor="blue700"
-              fontWeight="bold"
-              onPress={() => navigation.navigate({nav},{id:id})}
-            >
-              {categoriesName}
-            </Button>
-          </View>
-        );
-      })}
+      {categories.map(
+        ({ categoriesName, nav, id }: categoriesList, i: number) => {
+          return (
+            <View key={i}>
+              <Button
+                mt="lg"
+                mr={10}
+                px="xl"
+                py="lg"
+                h={40}
+                bg="#EEE"
+                color="#9E9E9E"
+                underlayColor="blue700"
+                fontWeight="bold"
+                onPress={() => {
+                  navigation.navigate(nav, { id: id });
+                }}
+              >
+                {categoriesName}
+              </Button>
+            </View>
+          );
+        }
+      )}
     </>
   );
 };
